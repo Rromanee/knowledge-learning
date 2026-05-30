@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -41,6 +43,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    /**
+     * @var Collection<int, Order>
+     */
+    #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'user')]
+    private Collection $orders;
+
+    /**
+     * @var Collection<int, LessonValidation>
+     */
+    #[ORM\OneToMany(targetEntity: LessonValidation::class, mappedBy: 'user')]
+    private Collection $lessonValidations;
+
+    /**
+     * @var Collection<int, Certification>
+     */
+    #[ORM\OneToMany(targetEntity: Certification::class, mappedBy: 'user')]
+    private Collection $certifications;
 
     public function getId(): ?int
     {
@@ -121,6 +141,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->roles = ['ROLE_CLIENT'];
+        $this->orders = new ArrayCollection();
+        $this->lessonValidations = new ArrayCollection();
+        $this->certifications = new ArrayCollection();
     }
 
     public function isVerified(): bool
@@ -154,6 +177,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getUser() === $this) {
+                $order->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LessonValidation>
+     */
+    public function getLessonValidations(): Collection
+    {
+        return $this->lessonValidations;
+    }
+
+    public function addLessonValidation(LessonValidation $lessonValidation): static
+    {
+        if (!$this->lessonValidations->contains($lessonValidation)) {
+            $this->lessonValidations->add($lessonValidation);
+            $lessonValidation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLessonValidation(LessonValidation $lessonValidation): static
+    {
+        if ($this->lessonValidations->removeElement($lessonValidation)) {
+            // set the owning side to null (unless already changed)
+            if ($lessonValidation->getUser() === $this) {
+                $lessonValidation->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Certification>
+     */
+    public function getCertifications(): Collection
+    {
+        return $this->certifications;
+    }
+
+    public function addCertification(Certification $certification): static
+    {
+        if (!$this->certifications->contains($certification)) {
+            $this->certifications->add($certification);
+            $certification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCertification(Certification $certification): static
+    {
+        if ($this->certifications->removeElement($certification)) {
+            // set the owning side to null (unless already changed)
+            if ($certification->getUser() === $this) {
+                $certification->setUser(null);
+            }
+        }
+
         return $this;
     }
 }
