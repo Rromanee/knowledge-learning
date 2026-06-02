@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+{% for message in app.flashes('warning') %}
+    <div class="alert alert-warning">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class="kl-container">
+
+    <h1 class="kl-title">{{ lesson.title }}</h1>
+
+    <p>
+        Cours :
+        {{ lesson.course.title }}
+    </p>
+
+    <div>
+        {{ lesson.content }}
+    </div>
+
+    <p>
+        Prix : {{ lesson.price }} €
+    </p>
+
+    <p>
+        Vidéo :
+        <a href="{{ lesson.videoUrl }}" target="_blank">
+            Voir la vidéo
+        </a>
+    </p>
+
+    <form method="post" action="{{ path('app_lesson_validation', {id: lesson.id}) }}">
+        <button>Valider la leçon</button>
+    </form>
+
+</div>
+{% endblock %}

@@ -2,6 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
+use App\Entity\Course;
+use App\Entity\Lesson;
 use App\Entity\OrderItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -14,6 +17,36 @@ class OrderItemRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, OrderItem::class);
+    }
+
+    public function findPurchasedCourseByUser(
+        Course $course,
+        User $user
+        ): array
+    {
+        return $this->createQueryBuilder('oi')
+        ->join('oi.customerOrder', 'o')
+        ->andWhere('oi.course = :course')
+        ->andWhere('o.user = :user')
+        ->setParameter('course', $course)
+        ->setParameter('user', $user)
+        ->getQuery()
+        ->getResult();
+    }
+
+    public function findPurchasedLessonByUser(
+        Lesson $lesson,
+        User $user
+    ): array
+    {
+        return $this->createQueryBuilder('oi')
+            ->join('oi.customerOrder', 'o')
+            ->andWhere('oi.lesson = :lesson')
+            ->andWhere('o.user = :user')
+            ->setParameter('lesson', $lesson)
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ theme.title }}{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('warning') %}
+    <div class="alert alert-warning">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<div class="kl-container">
+    <h1 class="kl-title">{{ theme.title }}</h1>
+
+    <div class="kl-grid">
+        {% for course in theme.courses %}
+            <a href="{{ path('app_course', {id: course.id}) }}" class="kl-card">
+                <h2>{{ course.title }}</h2>
+                <p class="kl-price">{{ course.price }} €</p>
+            </a>
+
+            <a href="{{ path('app_course_buy', {id: course.id}) }}">
+                Acheter ce cursus
+            </a>
+        {% else %}
+            <p>Aucun cursus disponible.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
