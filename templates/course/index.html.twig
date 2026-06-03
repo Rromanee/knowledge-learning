@@ -4,6 +4,12 @@
 
 {% block body %}
 
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
 {% for message in app.flashes('warning') %}
     <div class="alert alert-warning">
         {{ message }}
@@ -16,7 +22,7 @@
     <div class="kl-grid">
         {% for lesson in course.lessons %}
             <a href="{{  path('app_lesson', {id: lesson.id}) }}" class="kl-card">
-                <h3>{{ lesson.title }}</h2>
+                <h3>{{ lesson.title }}</h3>
                     <p class="kl-price">{{ lesson.price }} €</p>
             </a>
 
