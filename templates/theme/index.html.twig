@@ -20,9 +20,14 @@
                 <p class="kl-price">{{ course.price }} €</p>
             </a>
 
-            <a href="{{ path('app_course_buy', {id: course.id}) }}">
-                Acheter ce cursus
-            </a>
+            {% if course.id in purchasedCourses %}
+                <span class="text-success">Acheté</span>
+            {% else %}
+                <a href="{{ path('app_course_buy', {id: course.id}) }}">
+                    Acheter ce cursus
+                </a>
+            {% endif %}
+            
         {% else %}
             <p>Aucun cursus disponible.</p>
         {% endfor %}

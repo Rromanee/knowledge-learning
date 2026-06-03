@@ -4,6 +4,25 @@ body {
     background-color: #ffffff !important;
 }
 
+/* MENU */
+.nav-menu {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #0074c7;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: #00497c ;
+}
+
 /* Layout */
 .kl-container {
     max-width: 1200px;
@@ -45,5 +64,5 @@ body {
 
 .kl-price {
     font-weight: bold;
-    color: #0074c7;
+    color: #82b864;
 }

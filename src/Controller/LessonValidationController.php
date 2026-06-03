@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Certification;
 use App\Entity\Lesson;
+use App\Entity\User;
 use App\Entity\LessonValidation;
 use App\Repository\LessonValidationRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,29 +42,44 @@ final class LessonValidationController extends AbstractController
         $entityManager->persist($lessonValidation);
         $entityManager->flush();
 
-        $course = $lesson->getCourse();
+        $theme = $lesson->getCourse()->getTheme();
 
-        $totalLessons = count($course->getLessons());
-
+        $totalLessons = 0;
         $validatedLessons = 0;
 
-        foreach ($course->getLessons() as $courseLesson) {
-            $validation = $lessonValidationRepository
-                ->findValidationByUserAndLesson(
-                    $courseLesson,
-                    $this->getUser()
-                );
+        foreach ($theme->getCourses() as $course) {
+            foreach ($course->getLessons() as $courseLesson) {
 
-            if ($validation) {
-                $validatedLessons++;
+                $totalLessons++;
+
+                $validation = $lessonValidationRepository
+                    ->findValidationByUserAndLesson(
+                        $courseLesson,
+                        $this->getUser()
+                    );
+
+                if ($validation) {
+                    $validatedLessons++;
+                }
             }
         }
 
-        if ($validatedLessons === $totalLessons) {
-            
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $existingCertification = $user
+            ->getCertifications()
+            ->filter(
+                fn ($certification) =>
+                    $certification->getTheme() === $theme
+            )
+            ->first();
+
+        if ($validatedLessons === $totalLessons && !$existingCertification) {
+
             $certification = new Certification();
             $certification->setUser($this->getUser());
-            $certification->setTheme($course->getTheme());
+            $certification->setTheme($theme);
             $certification->setObtainedAt(new \DateTimeImmutable());
 
             $entityManager->persist($certification);
@@ -71,7 +87,7 @@ final class LessonValidationController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Félicitations ! Certification obtenue pour le thème '.$course->getTheme()->getTitle().'.'
+                'Félicitations ! Certification obtenue pour le thème ' . $theme->getTitle() . '.'
             );
         }
 

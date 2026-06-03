@@ -3,14 +3,16 @@
 {% block title %}Mes certifications{% endblock %}
 
 {% block body %}
-    <h1>Mes certifications</h1>
 
+<div class="kl-container">
+    <h1>Mes certifications</h1>
     {% for certification in certifications %}
-        <p>
-            {{ certification.theme.title }}
-            - obtenue le {{ certification.obtainedAt|date('d/m/Y') }}
-        </p>
+        <div>
+            <h2>{{ certification.theme.title }}</h2>
+            <p>Obtenue le {{ certification.obtainedAt|date('d/m/Y') }}</p>
+        </div>
     {% else %}
         <p>Aucune certification obtenue.</p>
     {% endfor %}
+</div>
 {% endblock %}

@@ -9,7 +9,7 @@
         {{ message }}
     </div>
 {% endfor %}
-
+ 
 <div class="kl-container">
     <h1 class="kl-title">{{ course.title }}</h1>
 
@@ -18,11 +18,16 @@
             <a href="{{  path('app_lesson', {id: lesson.id}) }}" class="kl-card">
                 <h3>{{ lesson.title }}</h2>
                     <p class="kl-price">{{ lesson.price }} €</p>
-
-                    <a href="{{ path('app_lesson_buy', {id: lesson.id}) }}">
-                        Acheter cette leçon
-                    </a>
             </a>
+
+        {% if lesson.id in purchasedLessons %}
+            <span class="text-success">Achetée</span>
+        {% else %}
+            <a href="{{ path('app_lesson_buy', {id: lesson.id}) }}">
+                Acheter cette leçon
+             </a>
+        {% endif %}
+        
         {% else %}
             <p>Aucun cursus disponible.</p>
         {% endfor %}
