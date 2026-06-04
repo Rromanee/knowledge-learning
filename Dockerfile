@@ -9,10 +9,11 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 WORKDIR /app
 
 COPY composer.json composer.lock ./
+
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-scripts
 
 COPY . .
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "echo PORT=$PORT && sleep 3600"]
+CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && php -S 0.0.0.0:${PORT:-8080} -t public"]
