@@ -17,6 +17,10 @@ use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
+/**
+ * Custom Symfony authenticator.
+ * Handles login form authentication and blocks unverified users.
+ */
 class AppAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
@@ -28,6 +32,13 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         private UserRepository $userRepository)
     {
     }
+
+    /**
+     * Authenticates the user from the login form.
+     * Throws an exception if the account has not been email-verified.
+     *
+     * @throws CustomUserMessageAuthenticationException if account is not verified
+     */
 
     public function authenticate(Request $request): Passport
     {

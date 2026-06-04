@@ -8,6 +8,7 @@ use App\Entity\Lesson;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
+/** Loads initial data: themes, courses and lessons. */
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void

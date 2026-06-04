@@ -10,6 +10,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository for OrderItem entities.
+ * Provides methods to check user purchase history.
+ *
  * @extends ServiceEntityRepository<OrderItem>
  */
 class OrderItemRepository extends ServiceEntityRepository
@@ -19,6 +22,13 @@ class OrderItemRepository extends ServiceEntityRepository
         parent::__construct($registry, OrderItem::class);
     }
 
+    /**
+     * Returns order items where the given course was purchased by the given user.
+     *
+     * @param Course $course The course to check
+     * @param User   $user   The user to check
+     * @return OrderItem[]
+     */
     public function findPurchasedCourseByUser(
         Course $course,
         User $user
@@ -34,6 +44,13 @@ class OrderItemRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    /**
+     * Returns order items where the given lesson was purchased by the given user.
+     *
+     * @param Lesson $lesson The lesson to check
+     * @param User   $user   The user to check
+     * @return OrderItem[]
+     */
     public function findPurchasedLessonByUser(
         Lesson $lesson,
         User $user

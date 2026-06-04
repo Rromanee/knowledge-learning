@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Handles purchase redirections to Stripe for courses and lessons. */
 final class OrderController extends AbstractController
 {
     #[Route('/course/{id}/buy', name: 'app_course_buy')]

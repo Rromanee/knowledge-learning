@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/** Defines the form for creating or editing a course. */
 class CourseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -26,7 +27,7 @@ class CourseType extends AbstractType
             ->add('updatedBy')
             ->add('theme', EntityType::class, [
                 'class' => Theme::class,
-                'choice_label' => 'id',
+                'choice_label' => 'title',
             ])
         ;
     }

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Displays a theme page with its courses and purchase status. */
 final class ThemeController extends AbstractController
 {
     #[Route('/theme/{id}', name: 'app_theme')]

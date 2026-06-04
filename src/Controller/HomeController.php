@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Displays the home page with all available themes. */
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Displays the list of certifications obtained by the current user. */
 final class CertificationController extends AbstractController
 {
     #[Route('/certifications', name: 'app_certifications')]

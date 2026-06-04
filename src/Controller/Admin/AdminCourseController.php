@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Manages course CRUD operations in the backoffice. */
 final class AdminCourseController extends AbstractController
 {
     #[Route('/admin/courses', name: 'app_admin_courses')]
@@ -97,8 +98,14 @@ final class AdminCourseController extends AbstractController
     #[Route('/admin/courses/{id}/delete', name: 'app_admin_course_delete')]
     public function delete(
         Course $course,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Request $request
     ): Response {
+
+        if (!$this->isCsrfTokenValid('delete_course_' . $course->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
+        
         $entityManager->remove($course);
         $entityManager->flush();
 

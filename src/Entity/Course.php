@@ -7,6 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * Represents a training course belonging to a theme.
+ * A course contains multiple lessons and can be purchased individually.
+ */
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
 class Course
 {
@@ -49,6 +53,9 @@ class Course
     #[ORM\OneToMany(targetEntity: OrderItem::class, mappedBy: 'course')]
     private Collection $orderItems;
 
+    /**
+     * Initializes collections and sets creation timestamp.
+     */
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -114,7 +121,7 @@ class Course
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
 
@@ -153,6 +160,11 @@ class Course
         return $this->lessons;
     }
 
+    /**
+     * Adds a lesson to this course and sets the owning side.
+     *
+     * @param Lesson $lesson The lesson to add
+     */
     public function addLesson(Lesson $lesson): static
     {
         if (!$this->lessons->contains($lesson)) {

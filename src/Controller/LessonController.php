@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Displays a lesson page, accessible only if purchased. */
 final class LessonController extends AbstractController
 {
     #[Route('/lesson/{id}', name: 'app_lesson')]

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Manages lesson CRUD operations in the backoffice. */
 final class AdminLessonController extends AbstractController
 {
     #[Route('/admin/lessons', name: 'app_admin_lessons')]
@@ -97,8 +98,13 @@ final class AdminLessonController extends AbstractController
     #[Route('/admin/lessons/{id}/delete', name: 'app_admin_lesson_delete')]
     public function delete(
         Lesson $lesson,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Request $request
     ): Response {
+
+        if (!$this->isCsrfTokenValid('delete_lesson_' . $lesson->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
         $entityManager->remove($lesson);
         $entityManager->flush();
 

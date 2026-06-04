@@ -41,13 +41,17 @@
                 </td>
 
                 <td>
-                    <a
-                        href="{{ path('app_admin_theme_delete', {id: theme.id}) }}"
-                        onclick="return confirm('Supprimer ce thème ?')"
-                    >
-                        Supprimer
-                    </a>
+
+                <td>
+                <form method="post"
+                action="{{ path('app_admin_theme_delete', {id: theme.id}) }}"
+                onsubmit="return confirm('Supprimer ce thème ?')"
+                >
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete_theme_' ~ theme.id) }}">
+                    <button type="submit">Supprimer</button>
+                </form>
                 </td>
+
             </tr>
         {% else %}
             <tr>

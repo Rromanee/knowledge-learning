@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/** Defines the form for creating or editing a theme. */
 class ThemeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void

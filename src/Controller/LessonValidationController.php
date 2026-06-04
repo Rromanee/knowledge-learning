@@ -12,8 +12,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * Handles lesson validation and automatic certification attribution.
+ * When all lessons of a theme are validated, a certification is automatically created.
+ */
 final class LessonValidationController extends AbstractController
 {
+
+    /**
+     * Validates a lesson for the current user.
+     * If all lessons in the theme are validated, grants a certification.
+     *
+     * @param Lesson $lesson The lesson to validate
+     */
+
     #[Route('/lesson/{id}/validate', name: 'app_lesson_validation')]
     public function index(
         Lesson $lesson,

@@ -47,13 +47,15 @@
                 </td>
 
                 <td>
-                    <a
-                        href="{{ path('app_admin_lesson_delete', {id: lesson.id}) }}"
-                        onclick="return confirm('Supprimer cette leçon ?')"
-                    >
-                        Supprimer
-                    </a>
+                <form method="post"
+                action="{{ path('app_admin_lesson_delete', {id: lesson.id}) }}"
+                onsubmit="return confirm('Supprimer cette leçon ?')"
+                >
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete_lesson_' ~ lesson.id) }}">
+                    <button type="submit">Supprimer</button>
+                </form>
                 </td>
+
             </tr>
         {% else %}
             <tr>

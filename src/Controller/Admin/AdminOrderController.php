@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Displays orders in the backoffice. */
 final class AdminOrderController extends AbstractController
 {
     #[Route('/admin/orders', name: 'app_admin_orders')]

@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use App\Form\UserType;
 
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Manages user accounts in the backoffice. */
 final class AdminUserController extends AbstractController
 {
     #[Route('/admin/users', name: 'app_admin_users')]
@@ -29,31 +31,17 @@ final class AdminUserController extends AbstractController
          Request $request,            
          EntityManagerInterface $entityManager
         ): Response {
-            if ($request->isMethod('POST')) {
-                $user->setEmail(
-                   $request->request->get('email')
-                );
-                    
-                $roles = $request->request->all('roles');
-                    
-                if (empty($roles)) {
-                    $roles = ['ROLE_CLIENT'];
-                }
-                    
-                $user->setRoles($roles);
-
+            $form = $this->createForm(UserType::class, $user);
+            $form->handleRequest($request);
+        
+            if ($form->isSubmitted() && $form->isValid()) {
                 $entityManager->flush();
-                $this->addFlash(
-                    'success',
-                    'Utilisateur modifié.'
-                );
-                    
-                return $this->redirectToRoute(
-                    'app_admin_users'
-                );
+                $this->addFlash('success', 'Utilisateur modifié.');
+                return $this->redirectToRoute('app_admin_users');
             }
-                
+        
             return $this->render('admin/user_form.html.twig', [
+                'form' => $form,
                 'user' => $user,
             ]);
         }
@@ -61,9 +49,14 @@ final class AdminUserController extends AbstractController
     #[Route('/admin/users/{id}/delete', name: 'app_admin_user_delete')]
     public function deleteUser(
         User $user,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Request $request
         ): Response {
-                
+
+            if (!$this->isCsrfTokenValid('delete_user_' . $user->getId(), $request->request->get('_token'))) {
+                throw $this->createAccessDeniedException('Invalid CSRF token.');
+            }
+
             $entityManager->remove($user);
             $entityManager->flush();
                 

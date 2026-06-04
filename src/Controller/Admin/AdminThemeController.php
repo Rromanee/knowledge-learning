@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Manages theme CRUD operations in the backoffice. */
 final class AdminThemeController extends AbstractController
 {
     #[Route('/admin/themes', name: 'app_admin_themes')]
@@ -97,8 +98,13 @@ final class AdminThemeController extends AbstractController
     #[Route('/admin/themes/{id}/delete', name: 'app_admin_theme_delete')]
     public function delete(
         Theme $theme,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Request $request
     ): Response {
+
+        if (!$this->isCsrfTokenValid('delete_theme_' . $theme->getId(), $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        }
         $entityManager->remove($theme);
         $entityManager->flush();
 

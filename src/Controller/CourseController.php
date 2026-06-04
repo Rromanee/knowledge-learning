@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/** Displays a course page with its lessons and purchase status. */
 final class CourseController extends AbstractController
 {
     #[Route('/course/{id}', name: 'app_course')]

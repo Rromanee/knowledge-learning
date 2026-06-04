@@ -6,6 +6,7 @@ use App\Entity\Order;
 use App\Entity\OrderItem;
 use App\Repository\CourseRepository;
 use App\Repository\LessonRepository;
+use App\Repository\OrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -14,6 +15,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+/**
+ * Handles Stripe payment callbacks.
+ * Processes successful payments and creates orders in the database.
+ */
 final class StripeController extends AbstractController
 {
     #[Route('/stripe', name: 'app_stripe')]
@@ -24,16 +29,35 @@ final class StripeController extends AbstractController
         ]);
     }
 
+    /**
+     * Handles the Stripe success redirect after payment.
+     * Retrieves session metadata to determine what was purchased.
+     * Prevents duplicate orders by checking the Stripe session ID.
+     *
+     * @param Request               $request
+     * @param CourseRepository      $courseRepository
+     * @param LessonRepository      $lessonRepository
+     * @param OrderRepository       $orderRepository
+     * @param EntityManagerInterface $entityManager
+     */
     #[Route('/stripe/success', name: 'app_stripe_success')]
     public function success(
         Request $request,
         CourseRepository $courseRepository,
         LessonRepository $lessonRepository,
+        OrderRepository $orderRepository,
         EntityManagerInterface $entityManager
     ): Response {
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
         $sessionId = $request->query->get('session_id');
+
+        $existingOrder = $orderRepository->findOneBy(['stripeSessionId' => $sessionId]);
+        
+        if ($existingOrder) {
+            $this->addFlash('warning', 'Achat déjà effectué.');
+            return $this->redirectToRoute('app_home');
+        }
 
         if (!$sessionId) {
             $this->addFlash(

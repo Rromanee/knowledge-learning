@@ -9,6 +9,8 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository for LessonValidation entities.
+ *
  * @extends ServiceEntityRepository<LessonValidation>
  */
 class LessonValidationRepository extends ServiceEntityRepository
@@ -17,6 +19,14 @@ class LessonValidationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, LessonValidation::class);
     }
+
+    /**
+     * Finds a validation record for a specific user and lesson combination.
+     *
+     * @param Lesson    $lesson The lesson to check
+     * @param User|null $user   The user to check
+     * @return LessonValidation|null Returns null if not yet validated
+     */
 
     public function findValidationByUserAndLesson(
         Lesson $lesson,

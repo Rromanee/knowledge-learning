@@ -6,8 +6,23 @@ use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * Service responsible for creating Stripe Checkout sessions.
+ * Handles both course and lesson purchases.
+ */
 class StripeService
 {
+    /**
+     * Creates a Stripe Checkout session for a course or lesson purchase.
+     *
+     * @param string                $name         Product display name
+     * @param float                 $price        Price in euros (converted to cents internally)
+     * @param int                   $itemId       ID of the course or lesson
+     * @param string                $itemType     Either 'course' or 'lesson'
+     * @param string                $successRoute Symfony route name for success redirect
+     * @param UrlGeneratorInterface $urlGenerator Used to generate absolute URLs
+     * @return Session The created Stripe session
+     */
     public function createCheckoutSession(
         string $name,
         float $price,
