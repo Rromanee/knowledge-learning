@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && frankenphp run"]
+CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && php -S 0.0.0.0:8080 -t public"]
