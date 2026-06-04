@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier utilisateur{% endblock %}
+
+{% block body %}
+<div class="kl-container">
+
+    <h1>Modifier utilisateur</h1>
+
+    <form method="post">
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input
+                type="email"
+                name="email"
+                value="{{ user.email }}"
+                class="form-control"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label>Rôles</label>
+
+            <div>
+                <input
+                    type="checkbox"
+                    name="roles[]"
+                    value="ROLE_CLIENT"
+                    {% if 'ROLE_CLIENT' in user.roles %}checked{% endif %}
+                >
+                ROLE_CLIENT
+            </div>
+
+            <div>
+                <input
+                    type="checkbox"
+                    name="roles[]"
+                    value="ROLE_ADMIN"
+                    {% if 'ROLE_ADMIN' in user.roles %}checked{% endif %}
+                >
+                ROLE_ADMIN
+            </div>
+        </div>
+
+        <button class="btn btn-primary">
+            Enregistrer
+        </button>
+
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ title }}</h1>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button class="btn btn-primary">
+        Enregistrer
+    </button>
+{{ form_end(form) }}
+
+<p>
+    <a href="{{ path('app_admin_courses') }}">
+        Retour à la liste
+    </a>
+</p>
+
+{% endblock %}

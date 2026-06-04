@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cursus{% endblock %}
+
+{% block body %}
+
+<h1>Gestion des cursus</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<p>
+    <a href="{{ path('app_admin_course_new') }}">
+        Créer un cursus
+    </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Prix</th>
+            <th>Thème</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for course in courses %}
+            <tr>
+                <td>{{ course.id }}</td>
+
+                <td>{{ course.title }}</td>
+
+                <td>{{ course.price }} €</td>
+
+                <td>{{ course.theme.title }}</td>
+
+                <td>
+                    <a href="{{ path('app_admin_course_edit', {id: course.id}) }}">
+                        Modifier
+                    </a>
+                </td>
+
+                <td>
+                    <a
+                        href="{{ path('app_admin_course_delete', {id: course.id}) }}"
+                        onclick="return confirm('Supprimer ce cursus ?')"
+                    >
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">
+                    Aucun cursus trouvé.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

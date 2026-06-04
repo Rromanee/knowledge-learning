@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Thèmes{% endblock %}
+
+{% block body %}
+
+<h1>Gestion des thèmes</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<p>
+    <a href="{{ path('app_admin_theme_new') }}">
+        Créer un thème
+    </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for theme in themes %}
+            <tr>
+                <td>{{ theme.id }}</td>
+
+                <td>{{ theme.title }}</td>
+
+                <td>
+                    <a href="{{ path('app_admin_theme_edit', {id: theme.id}) }}">
+                        Modifier
+                    </a>
+                </td>
+
+                <td>
+                    <a
+                        href="{{ path('app_admin_theme_delete', {id: theme.id}) }}"
+                        onclick="return confirm('Supprimer ce thème ?')"
+                    >
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">
+                    Aucun thème trouvé.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

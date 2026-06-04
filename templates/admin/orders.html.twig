@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+
+<h1>Gestion des commandes</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Client</th>
+            <th>Total</th>
+            <th>Statut</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+
+                <td>
+                    {{ order.user.email }}
+                </td>
+
+                <td>
+                    {{ order.total }} €
+                </td>
+
+                <td>
+                    {{ order.status }}
+                </td>
+
+                <td>
+                    {{ order.createdAt|date('d/m/Y H:i') }}
+                </td>
+
+                <td>
+                    <a href="{{ path('app_admin_order', {id: order.id}) }}">
+                        Voir
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">
+                    Aucune commande trouvée.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

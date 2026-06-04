@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Leçons{% endblock %}
+
+{% block body %}
+
+<h1>Gestion des leçons</h1>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<p>
+    <a href="{{ path('app_admin_lesson_new') }}">
+        Créer une leçon
+    </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Prix</th>
+            <th>Cursus</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.id }}</td>
+
+                <td>{{ lesson.title }}</td>
+
+                <td>{{ lesson.price }} €</td>
+
+                <td>{{ lesson.course.title }}</td>
+
+                <td>
+                    <a href="{{ path('app_admin_lesson_edit', {id: lesson.id}) }}">
+                        Modifier
+                    </a>
+                </td>
+
+                <td>
+                    <a
+                        href="{{ path('app_admin_lesson_delete', {id: lesson.id}) }}"
+                        onclick="return confirm('Supprimer cette leçon ?')"
+                    >
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">
+                    Aucune leçon trouvée.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

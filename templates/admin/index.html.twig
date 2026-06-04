@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+<h1>Backoffice Administration</h1>
+
+<ul>
+    <li>
+        <a href="{{ path('app_admin_users') }}">
+            Gestion des utilisateurs
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ path('app_admin_orders') }}">
+            Gestion des achats
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ path('app_admin_themes') }}">
+            Gestion des thèmes
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ path('app_admin_courses') }}">
+            Gestion des cursus
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ path('app_admin_lessons') }}">
+            Gestion des leçons
+        </a>
+    </li>
+</ul>
+
+{% endblock %}

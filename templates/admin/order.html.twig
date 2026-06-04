@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande #{{ order.id }}{% endblock %}
+
+{% block body %}
+
+<h1>Commande #{{ order.id }}</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Client</th>
+            <td>{{ order.user.email }}</td>
+        </tr>
+
+        <tr>
+            <th>Total</th>
+            <td>{{ order.total }} €</td>
+        </tr>
+
+        <tr>
+            <th>Statut</th>
+            <td>{{ order.status }}</td>
+        </tr>
+
+        <tr>
+            <th>Stripe Session</th>
+            <td>{{ order.stripeSessionId }}</td>
+        </tr>
+
+        <tr>
+            <th>Date</th>
+            <td>{{ order.createdAt|date('d/m/Y H:i') }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Produits achetés</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Titre</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in order.orderItems %}
+            <tr>
+                <td>
+                    {% if item.course %}
+                        Cursus
+                    {% else %}
+                        Leçon
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if item.course %}
+                        {{ item.course.title }}
+                    {% endif %}
+
+                    {% if item.lesson %}
+                        {{ item.lesson.title }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">
+                    Aucun produit trouvé.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('app_admin_orders') }}">
+    Retour à la liste
+</a>
+
+{% endblock %}
