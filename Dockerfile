@@ -14,6 +14,6 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader -
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && frankenphp run"]
+CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && frankenphp run --addr 0.0.0.0:8080"]
