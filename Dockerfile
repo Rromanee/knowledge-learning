@@ -14,6 +14,9 @@ RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader -
 
 COPY . .
 
+RUN php bin/console importmap:install
+>>>>>>> f0b083c838c190f30a831027205daae8ca28aed3
+
 EXPOSE 8080
 
-CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && frankenphp run"]
+CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && php -S 0.0.0.0:8080 -t public"]
