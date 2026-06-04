@@ -1,5 +1,7 @@
 FROM dunglas/frankenphp:php8.5.6-bookworm
 
+RUN apt-get update && apt-get install -y unzip zip
+
 RUN install-php-extensions pdo_pgsql intl opcache
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -13,4 +15,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ["php", "-S", "0.0.0.0:$PORT", "-t", "public/"]
+CMD ["sh", "-c", "php bin/console doctrine:migrations:migrate --no-interaction && php -S 0.0.0.0:$PORT -t public/"]
