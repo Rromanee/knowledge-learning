@@ -17,6 +17,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 ENV APP_ENV=prod
+ENV SERVER_NAME=:8080
 
 RUN php bin/console cache:clear
 
