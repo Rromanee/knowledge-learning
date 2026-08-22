@@ -13,23 +13,27 @@ class ThemeRepositoryTest extends KernelTestCase
     protected function setUp(): void
     {
         self::bootKernel();
+
         $this->em = static::getContainer()->get(EntityManagerInterface::class);
     }
 
     // Tests that a theme can be persisted and retrieved
     public function testFindThemeByTitle(): void
     {
+        $title = 'Theme Repository Test ' . uniqid();
+
         $theme = new Theme();
-        $theme->setTitle('Jardinage test');
+        $theme->setTitle($title);
 
         $this->em->persist($theme);
         $this->em->flush();
 
-        $found = $this->em->getRepository(Theme::class)
-            ->findOneBy(['title' => 'Jardinage test']);
+        $found = $this->em
+            ->getRepository(Theme::class)
+            ->findOneBy(['title' => $title]);
 
         $this->assertNotNull($found);
-        $this->assertEquals('Jardinage test', $found->getTitle());
+        $this->assertEquals($title, $found->getTitle());
 
         // Cleanup
         $this->em->remove($found);
@@ -39,8 +43,11 @@ class ThemeRepositoryTest extends KernelTestCase
     // Tests that a non-existent theme returns null
     public function testThemeNotFoundReturnsNull(): void
     {
-        $found = $this->em->getRepository(Theme::class)
-            ->findOneBy(['title' => 'Thème inexistant']);
+        $found = $this->em
+            ->getRepository(Theme::class)
+            ->findOneBy([
+                'title' => 'Theme That Does Not Exist ' . uniqid(),
+            ]);
 
         $this->assertNull($found);
     }

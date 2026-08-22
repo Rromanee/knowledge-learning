@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-/** Manages theme CRUD operations in the backoffice. */
+/**
+ * Manages theme CRUD operations in the backoffice.
+ */
 final class AdminThemeController extends AbstractController
 {
     #[Route('/admin/themes', name: 'app_admin_themes')]
@@ -41,6 +43,12 @@ final class AdminThemeController extends AbstractController
             $form->isSubmitted()
             && $form->isValid()
         ) {
+            $user = $this->getUser();
+
+            if ($user) {
+                $theme->setCreatedBy($user->getUserIdentifier());
+            }
+
             $entityManager->persist($theme);
             $entityManager->flush();
 
@@ -77,6 +85,14 @@ final class AdminThemeController extends AbstractController
             $form->isSubmitted()
             && $form->isValid()
         ) {
+            $user = $this->getUser();
+
+            $theme->setUpdatedAt(new \DateTimeImmutable());
+
+            if ($user) {
+                $theme->setUpdatedBy($user->getUserIdentifier());
+            }
+
             $entityManager->flush();
 
             $this->addFlash(
@@ -101,10 +117,17 @@ final class AdminThemeController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request
     ): Response {
-
-        if (!$this->isCsrfTokenValid('delete_theme_' . $theme->getId(), $request->request->get('_token'))) {
-            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        if (
+            !$this->isCsrfTokenValid(
+                'delete_theme_' . $theme->getId(),
+                $request->request->get('_token')
+            )
+        ) {
+            throw $this->createAccessDeniedException(
+                'Invalid CSRF token.'
+            );
         }
+
         $entityManager->remove($theme);
         $entityManager->flush();
 

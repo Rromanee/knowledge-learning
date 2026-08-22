@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ lesson.title }} - Mes achats | Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Consultez la leçon {{ lesson.title }} du cursus {{ lesson.course.title }} sur Knowledge Learning.
+{% endblock %}
+
+{% block body %}
+
+<div class="kl-container">
+
+    <nav aria-label="Fil d'Ariane" class="mb-4">
+
+        <a href="{{ path('app_purchases') }}">
+            Mes achats
+        </a>
+
+        <span aria-hidden="true">
+            &gt;
+        </span>
+
+        <a href="{{ path('app_purchases_course', {id: lesson.course.id}) }}">
+            {{ lesson.course.title }}
+        </a>
+
+        <span aria-hidden="true">
+            &gt;
+        </span>
+
+        <span aria-current="page">
+            {{ lesson.title }}
+        </span>
+
+    </nav>
+
+    <article>
+
+        <h1 class="kl-title">
+            {{ lesson.title }}
+        </h1>
+
+        <p class="mb-4">
+            <strong>Cursus :</strong>
+            {{ lesson.course.title }}
+        </p>
+
+        <section
+            class="mb-4"
+            aria-labelledby="lesson-content-title"
+        >
+
+            <h2 id="lesson-content-title">
+                Contenu de la leçon
+            </h2>
+
+            <div>
+                {{ lesson.content }}
+            </div>
+
+        </section>
+
+        {% if lesson.videoUrl %}
+
+            <section
+                class="mb-4"
+                aria-labelledby="video-title"
+            >
+
+                <h2 id="video-title">
+                    Vidéo
+                </h2>
+
+                <a
+                    href="{{ lesson.videoUrl }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-secondary"
+                >
+                    Voir la vidéo
+                </a>
+
+            </section>
+
+        {% endif %}
+
+        <section
+            class="mt-4"
+            aria-labelledby="validation-title"
+        >
+
+            <h2
+                id="validation-title"
+                class="visually-hidden"
+            >
+                Validation de la leçon
+            </h2>
+
+            {% if isValidated %}
+
+                <div
+                    class="alert alert-success"
+                    role="status"
+                >
+                    Leçon validée
+                </div>
+
+            {% else %}
+
+                <form
+                    method="post"
+                    action="{{ path('app_lesson_validation', {id: lesson.id}) }}"
+                >
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Valider la leçon
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+        </section>
+
+    </article>
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ path('app_purchases_course', {id: lesson.course.id}) }}"
+            class="btn btn-secondary"
+        >
+            Retour au cursus
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

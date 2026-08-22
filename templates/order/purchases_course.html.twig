@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes achats - {{ course.title }} | Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Retrouvez les leçons accessibles du cursus {{ course.title }} sur Knowledge Learning.
+{% endblock %}
+
+{% block body %}
+
+<div class="kl-container">
+
+    <nav aria-label="Fil d'Ariane" class="mb-4">
+
+        <a href="{{ path('app_purchases') }}">
+            Mes achats
+        </a>
+
+        <span aria-hidden="true">
+            &gt;
+        </span>
+
+        <span aria-current="page">
+            {{ course.title }}
+        </span>
+
+    </nav>
+
+    <h1 class="kl-title">
+        {{ course.title }}
+    </h1>
+
+    <p class="text-center">
+        Leçons accessibles
+    </p>
+
+    <div class="kl-grid">
+
+        {% for lesson in purchasedLessons %}
+
+            <a
+                href="{{ path('app_purchases_lesson', {id: lesson.id}) }}"
+                class="kl-card text-decoration-none"
+            >
+
+                <h2>
+                    {{ lesson.title }}
+                </h2>
+
+            </a>
+
+        {% else %}
+
+            <p class="text-center">
+                Aucun contenu acheté dans ce cursus.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ path('app_purchases') }}"
+            class="btn btn-secondary"
+        >
+            Retour à mes achats
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

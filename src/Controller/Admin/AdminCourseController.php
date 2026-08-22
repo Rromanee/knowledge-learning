@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-/** Manages course CRUD operations in the backoffice. */
+/**
+ * Manages course CRUD operations in the backoffice.
+ */
 final class AdminCourseController extends AbstractController
 {
     #[Route('/admin/courses', name: 'app_admin_courses')]
@@ -41,6 +43,12 @@ final class AdminCourseController extends AbstractController
             $form->isSubmitted()
             && $form->isValid()
         ) {
+            $user = $this->getUser();
+
+            if ($user) {
+                $course->setCreatedBy($user->getUserIdentifier());
+            }
+
             $entityManager->persist($course);
             $entityManager->flush();
 
@@ -77,6 +85,14 @@ final class AdminCourseController extends AbstractController
             $form->isSubmitted()
             && $form->isValid()
         ) {
+            $user = $this->getUser();
+
+            $course->setUpdatedAt(new \DateTimeImmutable());
+
+            if ($user) {
+                $course->setUpdatedBy($user->getUserIdentifier());
+            }
+
             $entityManager->flush();
 
             $this->addFlash(
@@ -101,11 +117,17 @@ final class AdminCourseController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request
     ): Response {
-
-        if (!$this->isCsrfTokenValid('delete_course_' . $course->getId(), $request->request->get('_token'))) {
-            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        if (
+            !$this->isCsrfTokenValid(
+                'delete_course_' . $course->getId(),
+                $request->request->get('_token')
+            )
+        ) {
+            throw $this->createAccessDeniedException(
+                'Invalid CSRF token.'
+            );
         }
-        
+
         $entityManager->remove($course);
         $entityManager->flush();
 

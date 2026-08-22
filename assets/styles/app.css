@@ -1,3 +1,30 @@
 body {
     background-color: skyblue;
 }
+
+.kl-auth-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    }
+    
+    .kl-auth-container .form-control {
+    width: 100%;
+    margin-bottom: 15px;
+    }
+    
+    .kl-auth-container label {
+    display: block;
+    margin-bottom: 6px;
+    }
+    
+    .kl-auth-container .form-check {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    }
+    
+    .kl-auth-container .kl-title {
+    text-align: center;
+    margin-bottom: 10px;
+    }
+    

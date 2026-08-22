@@ -1,70 +1,148 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Leçons{% endblock %}
+{% block title %}Gestion des leçons{% endblock %}
 
 {% block body %}
 
-<h1>Gestion des leçons</h1>
+<div class="kl-container">
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
+    <h1 class="kl-title">Gestion des leçons</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success auto-dismiss-alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="text-center mb-4">
+
+        <a
+            href="{{ path('app_admin_lesson_new') }}"
+            class="btn btn-primary"
+        >
+            Créer une leçon
+        </a>
+
     </div>
-{% endfor %}
 
-<p>
-    <a href="{{ path('app_admin_lesson_new') }}">
-        Créer une leçon
-    </a>
-</p>
+    <div class="table-responsive">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Titre</th>
-            <th>Prix</th>
-            <th>Cursus</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+        <table class="table table-bordered table-hover align-middle">
 
-    <tbody>
-        {% for lesson in lessons %}
-            <tr>
-                <td>{{ lesson.id }}</td>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titre</th>
+                    <th>Prix</th>
+                    <th>Cursus</th>
+                    <th>Date de création</th>
+                    <th>Date de modification</th>
+                    <th>Créé par</th>
+                    <th>Modifié par</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
 
-                <td>{{ lesson.title }}</td>
+            <tbody>
 
-                <td>{{ lesson.price }} €</td>
+                {% for lesson in lessons %}
 
-                <td>{{ lesson.course.title }}</td>
+                    <tr>
 
-                <td>
-                    <a href="{{ path('app_admin_lesson_edit', {id: lesson.id}) }}">
-                        Modifier
-                    </a>
-                </td>
+                        <td>
+                            {{ lesson.id }}
+                        </td>
 
-                <td>
-                <form method="post"
-                action="{{ path('app_admin_lesson_delete', {id: lesson.id}) }}"
-                onsubmit="return confirm('Supprimer cette leçon ?')"
-                >
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete_lesson_' ~ lesson.id) }}">
-                    <button type="submit">Supprimer</button>
-                </form>
-                </td>
+                        <td>
+                            {{ lesson.title }}
+                        </td>
 
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">
-                    Aucune leçon trouvée.
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                        <td>
+                            {{ lesson.price }} €
+                        </td>
+
+                        <td>
+                            {{ lesson.course.title }}
+                        </td>
+
+                        <td>
+                            {{ lesson.createdAt ? lesson.createdAt|date('d/m/Y H:i') : '-' }}
+                        </td>
+
+                        <td>
+                            {{ lesson.updatedAt ? lesson.updatedAt|date('d/m/Y H:i') : '-' }}
+                        </td>
+
+                        <td>
+                            {{ lesson.createdBy ?: '-' }}
+                        </td>
+
+                        <td>
+                            {{ lesson.updatedBy ?: '-' }}
+                        </td>
+
+                        <td class="text-nowrap">
+
+                            <a
+                                href="{{ path('app_admin_lesson_edit', {id: lesson.id}) }}"
+                                class="btn btn-primary btn-sm me-2"
+                            >
+                                Modifier
+                            </a>
+
+                            <form
+                                method="post"
+                                action="{{ path('app_admin_lesson_delete', {id: lesson.id}) }}"
+                                class="d-inline"
+                                onsubmit="return confirm('Supprimer cette leçon ?')"
+                            >
+
+                                <input
+                                    type="hidden"
+                                    name="_token"
+                                    value="{{ csrf_token('delete_lesson_' ~ lesson.id) }}"
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-danger btn-sm"
+                                >
+                                    Supprimer
+                                </button>
+
+                            </form>
+
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            Aucune leçon trouvée.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ path('app_admin') }}"
+            class="btn btn-secondary"
+        >
+            ← Retour au backoffice
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}

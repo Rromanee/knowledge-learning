@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes achats - {{ theme.title }} | Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Retrouvez vos cursus achetés dans le thème {{ theme.title }} sur Knowledge Learning.
+{% endblock %}
+
+{% block body %}
+
+<div class="kl-container">
+
+    <nav aria-label="Fil d'Ariane" class="mb-4">
+
+        <a href="{{ path('app_purchases') }}">
+            Mes achats
+        </a>
+
+        <span aria-hidden="true">
+            &gt;
+        </span>
+
+        <span aria-current="page">
+            {{ theme.title }}
+        </span>
+
+    </nav>
+
+    <h1 class="kl-title">
+        {{ theme.title }}
+    </h1>
+
+    <p class="text-center">
+        Mes cursus achetés
+    </p>
+
+    <div class="kl-grid">
+
+        {% for course in courses %}
+
+            <a
+                href="{{ path('app_purchases_course', {id: course.id}) }}"
+                class="kl-card text-decoration-none"
+            >
+
+                <h2>
+                    {{ course.title }}
+                </h2>
+
+            </a>
+
+        {% else %}
+
+            <p class="text-center">
+                Aucun contenu acheté dans ce thème.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ path('app_purchases') }}"
+            class="btn btn-secondary"
+        >
+            Retour à mes achats
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

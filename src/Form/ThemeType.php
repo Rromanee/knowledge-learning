@@ -14,14 +14,6 @@ class ThemeType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('createdBy')
-            ->add('updatedBy')
         ;
     }
 

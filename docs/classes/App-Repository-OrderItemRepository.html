@@ -148,14 +148,15 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/OrderItemRepository.php"><a href="files/src-repository-orderitemrepository.html"><abbr title="src/Repository/OrderItemRepository.php">OrderItemRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
             <p class="phpdocumentor-summary">Repository for OrderItem entities.</p>
 
 
-    <section class="phpdocumentor-description"><p>Provides methods to check user purchase history.</p>
+    <section class="phpdocumentor-description"><p>Provides methods to check user purchase history
+and retrieve purchased content.</p>
 </section>
 
 
@@ -201,6 +202,7 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Initializes the OrderItem repository.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Repository-OrderItemRepository.html#method_findPurchasedCourseByUser">findPurchasedCourseByUser()</a>
@@ -208,6 +210,13 @@
                                 &nbsp;: array&lt;string|int, <a href="classes/App-Entity-OrderItem.html"><abbr title="\App\Entity\OrderItem">OrderItem</abbr></a>&gt;    </span>
 </dt>
 <dd>Returns order items where the given course was purchased by the given user.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/App-Repository-OrderItemRepository.html#method_findPurchasedItemsByUserAndTheme">findPurchasedItemsByUserAndTheme()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <a href="classes/App-Entity-OrderItem.html"><abbr title="\App\Entity\OrderItem">OrderItem</abbr></a>&gt;    </span>
+</dt>
+<dd>Returns the items purchased by a user within a specific theme.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Repository-OrderItemRepository.html#method_findPurchasedLessonByUser">findPurchasedLessonByUser()</a>
@@ -244,11 +253,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/OrderItemRepository.php"><a href="files/src-repository-orderitemrepository.html"><abbr title="src/Repository/OrderItemRepository.php">OrderItemRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Initializes the OrderItem repository.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Doctrine\Persistence\ManagerRegistry">ManagerRegistry</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registry</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -264,7 +274,9 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Doctrine\Persistence\ManagerRegistry">ManagerRegistry</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The Doctrine manager registry.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -288,7 +300,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/OrderItemRepository.php"><a href="files/src-repository-orderitemrepository.html"><abbr title="src/Repository/OrderItemRepository.php">OrderItemRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">32</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -309,7 +321,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-Course.html"><abbr title="\App\Entity\Course">Course</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The course to check</p>
+                    <section class="phpdocumentor-description"><p>The course to check.</p>
 </section>
 
             </dd>
@@ -318,7 +330,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The user to check</p>
+                    <section class="phpdocumentor-description"><p>The user to check.</p>
 </section>
 
             </dd>
@@ -331,6 +343,76 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Entity-OrderItem.html"><abbr title="\App\Entity\OrderItem">OrderItem</abbr></a>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The purchased course items.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_findPurchasedItemsByUserAndTheme">
+        findPurchasedItemsByUserAndTheme()
+        <a href="classes/App-Repository-OrderItemRepository.html#method_findPurchasedItemsByUserAndTheme" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/OrderItemRepository.php"><a href="files/src-repository-orderitemrepository.html"><abbr title="src/Repository/OrderItemRepository.php">OrderItemRepository.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">87</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns the items purchased by a user within a specific theme.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">findPurchasedItemsByUserAndTheme</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-Theme.html"><abbr title="\App\Entity\Theme">Theme</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$theme</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Entity-OrderItem.html"><abbr title="\App\Entity\OrderItem">OrderItem</abbr></a>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>The result can contain purchased courses or lessons.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$user</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The user whose purchases should be retrieved.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$theme</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-Theme.html"><abbr title="\App\Entity\Theme">Theme</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The theme used to filter the purchases.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Entity-OrderItem.html"><abbr title="\App\Entity\OrderItem">OrderItem</abbr></a>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The purchased items belonging to the theme.</p>
+</section>
+
             </section>
 
 </article>
@@ -348,7 +430,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/OrderItemRepository.php"><a href="files/src-repository-orderitemrepository.html"><abbr title="src/Repository/OrderItemRepository.php">OrderItemRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -369,7 +451,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The lesson to check</p>
+                    <section class="phpdocumentor-description"><p>The lesson to check.</p>
 </section>
 
             </dd>
@@ -378,7 +460,7 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The user to check</p>
+                    <section class="phpdocumentor-description"><p>The user to check.</p>
 </section>
 
             </dd>
@@ -391,6 +473,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Entity-OrderItem.html"><abbr title="\App\Entity\OrderItem">OrderItem</abbr></a>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The purchased lesson items.</p>
+</section>
+
             </section>
 
 </article>
@@ -418,6 +504,7 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/App-Repository-OrderItemRepository.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/App-Repository-OrderItemRepository.html#method_findPurchasedCourseByUser">findPurchasedCourseByUser()</a></li>
+                                            <li class=""><a href="classes/App-Repository-OrderItemRepository.html#method_findPurchasedItemsByUserAndTheme">findPurchasedItemsByUserAndTheme()</a></li>
                                             <li class=""><a href="classes/App-Repository-OrderItemRepository.html#method_findPurchasedLessonByUser">findPurchasedLessonByUser()</a></li>
                                     </ul>
             </li>

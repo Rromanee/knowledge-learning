@@ -1,66 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <title>{% block title %}Knowledge Learning{% endblock %}</title>
+
+        <meta
+            name="description"
+            content="{% block meta_description %}Knowledge Learning - Plateforme de formation en ligne{% endblock %}"
+        >
+
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        >
+
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="icon" href="{{ asset('images/favicon.png') }}">
+
         {% block stylesheets %}
         {% endblock %}
 
         {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+            {% block importmap %}
+                {{ importmap('app') }}
+            {% endblock %}
         {% endblock %}
 
         {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
+
         {% if frankenphpHotReload %}
-        <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">
-        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
-        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
+            <meta
+                name="frankenphp-hot-reload:url"
+                content="{{ frankenphpHotReload }}"
+            >
+
+            <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
+
+            <script
+                src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm"
+                type="module"
+            ></script>
         {% endif %}
     </head>
-    
+
     <body>
 
-        <nav class="nav-menu">
-        <a href="{{ path('app_home') }}">Accueil</a>
-        
-        {% if app.user %}
-            <a href="{{ path('app_certifications') }}">
-                Mes certifications
-            </a>
+        <header>
+            <nav
+                class="navbar navbar-expand-lg navbar-light bg-light"
+                aria-label="Navigation principale"
+            >
+                <div class="container">
 
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('app_admin') }}">Admin</a>
-        {% endif %}
-            
-        <a href="{{ path('app_logout') }}">
-            Déconnexion
-        </a>
-            
-        {% else %}
+                    <a
+                        class="navbar-brand"
+                        href="{{ path('app_home') }}"
+                    >
+                        Knowledge Learning
+                    </a>
 
-        <a href="{{ path('app_login') }}">
-            Connexion
-        </a>
-        
-        <a href="{{ path('app_register') }}">
-            Inscription
-        </a>
-        {% endif %}
-        </nav>
-    
-        {% block body %}
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavigation"
+                        aria-controls="mainNavigation"
+                        aria-expanded="false"
+                        aria-label="Ouvrir le menu de navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-        {% for message in app.flashes('warning') %}
-            <div class="alert alert-warning">
-                {{ message }}
-            </div>
-        {% endfor %}
+                    <div
+                        class="collapse navbar-collapse"
+                        id="mainNavigation"
+                    >
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ path('app_home') }}"
+                                >
+                                    Accueil
+                                </a>
+                            </li>
 
-{% endblock %}
+                            {% if app.user %}
+
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ path('app_purchases') }}"
+                                    >
+                                        Mes achats
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ path('app_certifications') }}"
+                                    >
+                                        Mes certifications
+                                    </a>
+                                </li>
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li class="nav-item">
+                                        <a
+                                            class="nav-link"
+                                            href="{{ path('app_admin') }}"
+                                        >
+                                            Administration
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ path('app_logout') }}"
+                                    >
+                                        Déconnexion
+                                    </a>
+                                </li>
+
+                            {% else %}
+
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ path('app_login') }}"
+                                    >
+                                        Connexion
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a
+                                        class="nav-link"
+                                        href="{{ path('app_register') }}"
+                                    >
+                                        Inscription
+                                    </a>
+                                </li>
+
+                            {% endif %}
+
+                        </ul>
+
+                        {% if app.user %}
+                            <form
+                                action="{{ path('app_search') }}"
+                                method="get"
+                                class="d-flex gap-2"
+                                role="search"
+                            >
+                                <label
+                                    for="search"
+                                    class="visually-hidden"
+                                >
+                                    Rechercher une formation
+                                </label>
+
+                                <input
+                                    id="search"
+                                    type="search"
+                                    name="q"
+                                    class="form-control"
+                                    placeholder="Rechercher une formation..."
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                >
+                                    Rechercher
+                                </button>
+                            </form>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+
+            {% for message in app.flashes('warning') %}
+                <div
+                    class="alert alert-warning auto-dismiss-alert"
+                    role="alert"
+                >
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            {% for message in app.flashes('success') %}
+                <div
+                    class="alert alert-success auto-dismiss-alert"
+                    role="alert"
+                >
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            {% block body %}
+            {% endblock %}
+
+        </main>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        ></script>
+
     </body>
 </html>

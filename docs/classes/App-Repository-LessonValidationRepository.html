@@ -201,11 +201,18 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/App-Repository-LessonValidationRepository.html#method_countValidatedLessonsByUser">countValidatedLessonsByUser()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+<dd>Returns the number of lessons validated by a user.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Repository-LessonValidationRepository.html#method_findValidationByUserAndLesson">findValidationByUserAndLesson()</a>
     <span>
                                 &nbsp;: <a href="classes/App-Entity-LessonValidation.html"><abbr title="\App\Entity\LessonValidation">LessonValidation</abbr></a>|null    </span>
 </dt>
-<dd>Finds a validation record for a specific user and lesson combination.</dd>
+<dd>Finds a validation record for a specific user and lesson.</dd>
 
     </dl>
 
@@ -271,6 +278,55 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_countValidatedLessonsByUser">
+        countValidatedLessonsByUser()
+        <a href="classes/App-Repository-LessonValidationRepository.html#method_countValidatedLessonsByUser" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/LessonValidationRepository.php"><a href="files/src-repository-lessonvalidationrepository.html"><abbr title="src/Repository/LessonValidationRepository.php">LessonValidationRepository.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">39</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Returns the number of lessons validated by a user.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">countValidatedLessonsByUser</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$user</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_findValidationByUserAndLesson">
         findValidationByUserAndLesson()
         <a href="classes/App-Repository-LessonValidationRepository.html#method_findValidationByUserAndLesson" class="headerlink"><i class="fas fa-link"></i></a>
@@ -279,15 +335,15 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/LessonValidationRepository.php"><a href="files/src-repository-lessonvalidationrepository.html"><abbr title="src/Repository/LessonValidationRepository.php">LessonValidationRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Finds a validation record for a specific user and lesson combination.</p>
+        <p class="phpdocumentor-summary">Finds a validation record for a specific user and lesson.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">findValidationByUserAndLesson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lesson</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-LessonValidation.html"><abbr title="\App\Entity\LessonValidation">LessonValidation</abbr></a>|null</span></code>
+                    <span class="phpdocumentor-signature__name">findValidationByUserAndLesson</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lesson</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$user</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-LessonValidation.html"><abbr title="\App\Entity\LessonValidation">LessonValidation</abbr></a>|null</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -300,18 +356,14 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The lesson to check</p>
-</section>
-
+                
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$user</span>
-                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a>|null</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-User.html"><abbr title="\App\Entity\User">User</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The user to check</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -322,10 +374,6 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/App-Entity-LessonValidation.html"><abbr title="\App\Entity\LessonValidation">LessonValidation</abbr></a>|null</span>
-                    &mdash;
-                <section class="phpdocumentor-description"><p>Returns null if not yet validated</p>
-</section>
-
             </section>
 
 </article>
@@ -352,6 +400,7 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/App-Repository-LessonValidationRepository.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/App-Repository-LessonValidationRepository.html#method_countValidatedLessonsByUser">countValidatedLessonsByUser()</a></li>
                                             <li class=""><a href="classes/App-Repository-LessonValidationRepository.html#method_findValidationByUserAndLesson">findValidationByUserAndLesson()</a></li>
                                     </ul>
             </li>

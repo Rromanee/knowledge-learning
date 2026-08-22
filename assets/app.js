@@ -1,10 +1,22 @@
 import './stimulus_bootstrap.js';
-/*
- * Welcome to your app's main JavaScript file!
- *
- * This file will be included onto the page via the importmap() Twig function,
- * which should already be in your base.html.twig.
- */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+/*
+ * Automatically dismiss flash messages after 5 seconds.
+ */
+
+document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+        document
+            .querySelectorAll('.auto-dismiss-alert')
+            .forEach(function (alert) {
+
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+
+                setTimeout(function () {
+                    alert.remove();
+                }, 500);
+            });
+    }, 5000);
+});

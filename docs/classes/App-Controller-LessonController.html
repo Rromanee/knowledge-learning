@@ -150,11 +150,11 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/LessonController.php"><a href="files/src-controller-lessoncontroller.html"><abbr title="src/Controller/LessonController.php">LessonController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Displays a lesson page, accessible only if purchased.</p>
+            <p class="phpdocumentor-summary">Displays lesson pages and purchased lessons.</p>
 
 
 
@@ -184,10 +184,18 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/App-Controller-LessonController.html#method_purchases">purchases()</a>
+    <span>
+                                &nbsp;: <abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr>    </span>
+</dt>
+<dd>Displays a purchased lesson from the &quot;Mes achats&quot; section.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/App-Controller-LessonController.html#method_show">show()</a>
     <span>
                                 &nbsp;: <abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr>    </span>
 </dt>
+<dd>Displays a lesson page, accessible only if purchased.</dd>
 
     </dl>
 
@@ -209,22 +217,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_show">
-        show()
-        <a href="classes/App-Controller-LessonController.html#method_show" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_purchases">
+        purchases()
+        <a href="classes/App-Controller-LessonController.html#method_purchases" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/LessonController.php"><a href="files/src-controller-lessoncontroller.html"><abbr title="src/Controller/LessonController.php">LessonController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">70</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Displays a purchased lesson from the &quot;Mes achats&quot; section.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">show</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lesson</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-OrderItemRepository.html"><abbr title="\App\Repository\OrderItemRepository">OrderItemRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$orderItemRepository</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">purchases</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lesson</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-OrderItemRepository.html"><abbr title="\App\Repository\OrderItemRepository">OrderItemRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$orderItemRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-LessonValidationRepository.html"><abbr title="\App\Repository\LessonValidationRepository">LessonValidationRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lessonValidationRepository</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -242,6 +251,93 @@
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$orderItemRepository</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Repository-OrderItemRepository.html"><abbr title="\App\Repository\OrderItemRepository">OrderItemRepository</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$lessonValidationRepository</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Repository-LessonValidationRepository.html"><abbr title="\App\Repository\LessonValidationRepository">LessonValidationRepository</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        
+            <section class="phpdocumentor-attributes">
+            <h5 class="phpdocumentor-elements__header" id="method_purchases_attributes">
+                Attributes <a href="classes/App-Controller-LessonController.html#method_purchases_attributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+            </h5>
+                            <dl class="phpdocumentor-argument-list">
+    <dt class="phpdocumentor-argument-list__entry">
+        #[<abbr title="\Symfony\Component\Routing\Attribute\Route">Route</abbr>]
+    </dt>
+        <dd class="phpdocumentor-argument-list__entry">
+        &#039;/mes-achats/lesson/{id}&#039;
+    </dd>
+        <dd class="phpdocumentor-argument-list__entry">
+        $name: &#039;app_purchases_lesson&#039;
+    </dd>
+    </dl>
+                    </section>
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_show">
+        show()
+        <a href="classes/App-Controller-LessonController.html#method_show" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/LessonController.php"><a href="files/src-controller-lessoncontroller.html"><abbr title="src/Controller/LessonController.php">LessonController.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">20</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Displays a lesson page, accessible only if purchased.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">show</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lesson</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-OrderItemRepository.html"><abbr title="\App\Repository\OrderItemRepository">OrderItemRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$orderItemRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-LessonValidationRepository.html"><abbr title="\App\Repository\LessonValidationRepository">LessonValidationRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lessonValidationRepository</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$lesson</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Entity-Lesson.html"><abbr title="\App\Entity\Lesson">Lesson</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$orderItemRepository</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Repository-OrderItemRepository.html"><abbr title="\App\Repository\OrderItemRepository">OrderItemRepository</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$lessonValidationRepository</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Repository-LessonValidationRepository.html"><abbr title="\App\Repository\LessonValidationRepository">LessonValidationRepository</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -297,6 +393,7 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/App-Controller-LessonController.html#method_purchases">purchases()</a></li>
                                             <li class=""><a href="classes/App-Controller-LessonController.html#method_show">show()</a></li>
                                     </ul>
             </li>

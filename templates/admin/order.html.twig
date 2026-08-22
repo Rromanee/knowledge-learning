@@ -4,80 +4,117 @@
 
 {% block body %}
 
-<h1>Commande #{{ order.id }}</h1>
+<div class="kl-container">
 
-<table class="table">
-    <tbody>
-        <tr>
-            <th>Client</th>
-            <td>{{ order.user.email }}</td>
-        </tr>
+    <h1 class="kl-title">
+        Commande #{{ order.id }}
+    </h1>
 
-        <tr>
-            <th>Total</th>
-            <td>{{ order.total }} €</td>
-        </tr>
+    <div class="table-responsive">
 
-        <tr>
-            <th>Statut</th>
-            <td>{{ order.status }}</td>
-        </tr>
+        <table class="table">
 
-        <tr>
-            <th>Stripe Session</th>
-            <td>{{ order.stripeSessionId }}</td>
-        </tr>
+            <tbody>
 
-        <tr>
-            <th>Date</th>
-            <td>{{ order.createdAt|date('d/m/Y H:i') }}</td>
-        </tr>
-    </tbody>
-</table>
+                <tr>
+                    <th>Client</th>
+                    <td>{{ order.user.email }}</td>
+                </tr>
 
-<h2>Produits achetés</h2>
+                <tr>
+                    <th>Total</th>
+                    <td>{{ order.total }} €</td>
+                </tr>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Type</th>
-            <th>Titre</th>
-        </tr>
-    </thead>
+                <tr>
+                    <th>Statut</th>
+                    <td>{{ order.status }}</td>
+                </tr>
 
-    <tbody>
-        {% for item in order.orderItems %}
-            <tr>
-                <td>
-                    {% if item.course %}
-                        Cursus
-                    {% else %}
-                        Leçon
-                    {% endif %}
-                </td>
+                <tr>
+                    <th>Stripe Session</th>
+                    <td>{{ order.stripeSessionId }}</td>
+                </tr>
 
-                <td>
-                    {% if item.course %}
-                        {{ item.course.title }}
-                    {% endif %}
+                <tr>
+                    <th>Date</th>
+                    <td>{{ order.createdAt|date('d/m/Y H:i') }}</td>
+                </tr>
 
-                    {% if item.lesson %}
-                        {{ item.lesson.title }}
-                    {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="2">
-                    Aucun produit trouvé.
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+            </tbody>
 
-<a href="{{ path('app_admin_orders') }}">
-    Retour à la liste
-</a>
+        </table>
+
+    </div>
+
+    <h2 class="mt-4">
+        Produits achetés
+    </h2>
+
+    <div class="table-responsive">
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Titre</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in order.orderItems %}
+
+                    <tr>
+
+                        <td>
+                            {% if item.course %}
+                                Cursus
+                            {% else %}
+                                Leçon
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            {% if item.course %}
+                                {{ item.course.title }}
+                            {% endif %}
+
+                            {% if item.lesson %}
+                                {{ item.lesson.title }}
+                            {% endif %}
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="2" class="text-center">
+                            Aucun produit trouvé.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ path('app_admin_orders') }}"
+            class="btn btn-secondary"
+        >
+            ← Retour aux commandes
+        </a>
+
+    </div>
+
+</div>
 
 {% endblock %}

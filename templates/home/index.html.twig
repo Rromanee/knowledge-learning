@@ -1,20 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Knowledge Learning{% endblock %}
+{% block title %}Knowledge Learning - Formations en ligne{% endblock %}
+
+{% block meta_description %}
+    Découvrez les formations en ligne proposées par Knowledge Learning.
+{% endblock %}
 
 {% block body %}
-<div class="kl-container">
-    <h1 class="kl-title">Knowledge Learning</h1>
-    <p class="text-center">Découvrez nos formations</p>
+    <div class="kl-container">
+        <h1 class="kl-title">Knowledge Learning</h1>
 
-    <div class="kl-grid">
-        {% for theme in themes %}
-            <a href="{{ path('app_theme', {id: theme.id}) }}" class="kl-card">
-                <h2>{{ theme.title }}</h2>
-            </a>
-        {% else %}
-            <p>Aucun thème disponible</p>
-        {% endfor %}
+        <p class="text-center">
+            Découvrez nos formations
+        </p>
+
+        <div class="kl-grid">
+            {% for theme in themes %}
+                <a
+                    href="{{ path('app_theme', {id: theme.id}) }}"
+                    class="kl-card"
+                >
+                    <h2>{{ theme.title }}</h2>
+                </a>
+            {% else %}
+                <p>Aucun thème disponible.</p>
+            {% endfor %}
+        </div>
     </div>
-</div>
 {% endblock %}

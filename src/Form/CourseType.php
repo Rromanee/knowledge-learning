@@ -17,14 +17,6 @@ class CourseType extends AbstractType
         $builder
             ->add('title')
             ->add('price')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('createdBy')
-            ->add('updatedBy')
             ->add('theme', EntityType::class, [
                 'class' => Theme::class,
                 'choice_label' => 'title',

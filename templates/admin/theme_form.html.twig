@@ -4,20 +4,38 @@
 
 {% block body %}
 
-<h1>{{ title }}</h1>
+<div class="kl-auth-container">
 
-{{ form_start(form) }}
-    {{ form_widget(form) }}
+    <h1 class="kl-title">{{ title }}</h1>
 
-    <button class="btn btn-primary">
-        Enregistrer
-    </button>
-{{ form_end(form) }}
+    {{ form_start(form, {'attr': {'class': 'kl-auth-form'}}) }}
 
-<p>
-    <a href="{{ path('app_admin_themes') }}">
-        Retour à la liste
-    </a>
-</p>
+        <div class="mb-3">
+            {{ form_row(form.title, {
+                label: 'Titre'
+            }) }}
+        </div>
+
+        <div class="mt-4">
+
+            <button
+                type="submit"
+                class="btn btn-primary w-100"
+            >
+                Enregistrer
+            </button>
+
+            <a
+                href="{{ path('app_admin_themes') }}"
+                class="btn btn-secondary w-100 mt-2"
+            >
+                ← Retour à la liste
+            </a>
+
+        </div>
+
+    {{ form_end(form) }}
+
+</div>
 
 {% endblock %}

@@ -1,42 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ theme.title }}{% endblock %}
+{% block title %}{{ theme.title }} - Formations | Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Découvrez les formations {{ theme.title }} proposées par Knowledge Learning.
+{% endblock %}
 
 {% block body %}
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
-
-{% for message in app.flashes('warning') %}
-    <div class="alert alert-warning">
-        {{ message }}
-    </div>
-{% endfor %}
-
 <div class="kl-container">
+
+    <nav aria-label="Fil d'Ariane" class="mb-3">
+
+        <a href="{{ path('app_home') }}">
+            Accueil
+        </a>
+
+        <span aria-hidden="true">
+            &gt;
+        </span>
+
+        <span aria-current="page">
+            {{ theme.title }}
+        </span>
+
+    </nav>
+
     <h1 class="kl-title">{{ theme.title }}</h1>
 
     <div class="kl-grid">
+
         {% for course in theme.courses %}
+
             <a href="{{ path('app_course', {id: course.id}) }}" class="kl-card">
+
                 <h2>{{ course.title }}</h2>
-                <p class="kl-price">{{ course.price }} €</p>
+
+                <p class="kl-price">
+                    {{ course.price }} €
+                </p>
+
             </a>
 
             {% if course.id in purchasedCourses %}
-                <span class="text-success">Acheté</span>
+
+                <span class="text-success">
+                    ✓ Accessible
+                </span>
+
+            {% elseif course.id in coursesWithPurchasedLessons %}
+
+                <span class="text-warning">
+                    Contenu partiellement acquis
+                </span>
+
             {% else %}
+
                 <a href="{{ path('app_course_buy', {id: course.id}) }}">
                     Acheter ce cursus
                 </a>
+
             {% endif %}
-            
+
         {% else %}
+
             <p>Aucun cursus disponible.</p>
+
         {% endfor %}
+
     </div>
+
 </div>
+
 {% endblock %}

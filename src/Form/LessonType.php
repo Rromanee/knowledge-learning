@@ -19,14 +19,6 @@ class LessonType extends AbstractType
             ->add('content')
             ->add('videoUrl')
             ->add('price')
-            ->add('createdAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('updatedAt', null, [
-                'widget' => 'single_text',
-            ])
-            ->add('createdBy')
-            ->add('updatedBy')
             ->add('course', EntityType::class, [
                 'class' => Course::class,
                 'choice_label' => 'id',

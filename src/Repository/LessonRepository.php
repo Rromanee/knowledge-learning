@@ -7,37 +7,39 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * Repository for managing Lesson entities.
+ *
  * @extends ServiceEntityRepository<Lesson>
  */
 class LessonRepository extends ServiceEntityRepository
 {
+    /**
+     * Initializes the Lesson repository.
+     *
+     * @param ManagerRegistry $registry The Doctrine manager registry.
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Lesson::class);
     }
 
-    //    /**
-    //     * @return Lesson[] Returns an array of Lesson objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('l')
-    //            ->andWhere('l.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('l.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Lesson
-    //    {
-    //        return $this->createQueryBuilder('l')
-    //            ->andWhere('l.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * Searches lessons by their title.
+     *
+     * The search is case-insensitive and matches lessons
+     * whose title contains the provided search term.
+     *
+     * @param string $search The search term entered by the user.
+     *
+     * @return Lesson[] The lessons matching the search criteria.
+     */
+    public function search(string $search): array
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('LOWER(l.title) LIKE LOWER(:search)')
+            ->setParameter('search', '%' . $search . '%')
+            ->orderBy('l.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

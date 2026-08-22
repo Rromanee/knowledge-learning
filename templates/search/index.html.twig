@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche | Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Recherchez des formations, cours, thèmes et leçons sur Knowledge Learning.
+{% endblock %}
+
+{% block body %}
+
+<div class="kl-container">
+
+    <h1 class="kl-title">
+        Rechercher
+    </h1>
+
+    <form
+        action="{{ path('app_search') }}"
+        method="get"
+        class="d-flex flex-column flex-sm-row gap-2 mb-4"
+        role="search"
+    >
+
+        <label
+            for="search-query"
+            class="visually-hidden"
+        >
+            Rechercher une formation, un cours, un thème ou une leçon
+        </label>
+
+        <input
+            id="search-query"
+            type="search"
+            name="q"
+            value="{{ query }}"
+            placeholder="Rechercher..."
+            class="form-control"
+            aria-label="Rechercher une formation, un cours, un thème ou une leçon"
+        >
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            Rechercher
+        </button>
+
+    </form>
+
+    {% if query != '' %}
+
+        <h2>
+            Résultats pour « {{ query }} »
+        </h2>
+
+        {% if courses is not empty %}
+
+            <section
+                class="mt-4"
+                aria-labelledby="courses-title"
+            >
+
+                <h3 id="courses-title">
+                    Cours
+                </h3>
+
+                <div class="kl-grid">
+
+                    {% for course in courses %}
+
+                        <a
+                            href="{{ path('app_course', {id: course.id}) }}"
+                            class="kl-card text-decoration-none"
+                        >
+
+                            <h4>
+                                {{ course.title }}
+                            </h4>
+
+                            <p>
+                                {{ course.price|number_format(2, ',', ' ') }} €
+                            </p>
+
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% endif %}
+
+        {% if themes is not empty %}
+
+            <section
+                class="mt-4"
+                aria-labelledby="themes-title"
+            >
+
+                <h3 id="themes-title">
+                    Thèmes
+                </h3>
+
+                <div class="kl-grid">
+
+                    {% for theme in themes %}
+
+                        <a
+                            href="{{ path('app_theme', {id: theme.id}) }}"
+                            class="kl-card text-decoration-none"
+                        >
+
+                            <h4>
+                                {{ theme.title }}
+                            </h4>
+
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% endif %}
+
+        {% if lessons is not empty %}
+
+            <section
+                class="mt-4"
+                aria-labelledby="lessons-title"
+            >
+
+                <h3 id="lessons-title">
+                    Leçons
+                </h3>
+
+                <div class="kl-grid">
+
+                    {% for lesson in lessons %}
+
+                        <a
+                            href="{{ path('app_lesson', {id: lesson.id}) }}"
+                            class="kl-card text-decoration-none"
+                        >
+
+                            <h4>
+                                {{ lesson.title }}
+                            </h4>
+
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% endif %}
+
+        {% if courses is empty and themes is empty and lessons is empty %}
+
+            <p
+                class="mt-4"
+                role="status"
+            >
+                Aucun résultat pour « {{ query }} ».
+            </p>
+
+        {% endif %}
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

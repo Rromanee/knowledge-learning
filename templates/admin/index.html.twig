@@ -4,38 +4,39 @@
 
 {% block body %}
 
-<h1>Backoffice Administration</h1>
+<div class="kl-container">
 
-<ul>
-    <li>
-        <a href="{{ path('app_admin_users') }}">
-            Gestion des utilisateurs
-        </a>
-    </li>
+<h1 class="kl-title">Backoffice Administration</h1>
 
-    <li>
-        <a href="{{ path('app_admin_orders') }}">
-            Gestion des achats
-        </a>
-    </li>
+<div class="kl-grid">
 
-    <li>
-        <a href="{{ path('app_admin_themes') }}">
-            Gestion des thèmes
-        </a>
-    </li>
+    <a href="{{ path('app_admin_users') }}" class="kl-card">
+        <h2>Gestion des utilisateurs</h2>
+        <p>Gérer les comptes utilisateurs.</p>
+    </a>
 
-    <li>
-        <a href="{{ path('app_admin_courses') }}">
-            Gestion des cursus
-        </a>
-    </li>
+    <a href="{{ path('app_admin_orders') }}" class="kl-card">
+        <h2>Gestion des achats</h2>
+        <p>Consulter les achats effectués.</p>
+    </a>
 
-    <li>
-        <a href="{{ path('app_admin_lessons') }}">
-            Gestion des leçons
-        </a>
-    </li>
-</ul>
+    <a href="{{ path('app_admin_themes') }}" class="kl-card">
+        <h2>Gestion des thèmes</h2>
+        <p>Ajouter, modifier ou supprimer les thèmes.</p>
+    </a>
+
+    <a href="{{ path('app_admin_courses') }}" class="kl-card">
+        <h2>Gestion des cursus</h2>
+        <p>Gérer les cursus disponibles.</p>
+    </a>
+
+    <a href="{{ path('app_admin_lessons') }}" class="kl-card">
+        <h2>Gestion des leçons</h2>
+        <p>Gérer les leçons des cursus.</p>
+    </a>
+
+</div>
+
+</div>
 
 {% endblock %}

@@ -15,24 +15,27 @@ class LessonRepositoryTest extends KernelTestCase
     protected function setUp(): void
     {
         self::bootKernel();
+
         $this->em = static::getContainer()->get(EntityManagerInterface::class);
     }
 
     // Tests that a lesson can be persisted and retrieved
     public function testFindLessonByTitle(): void
     {
+        $lessonTitle = 'Lesson Repository Test ' . uniqid();
+
         $theme = new Theme();
-        $theme->setTitle('Musique test');
+        $theme->setTitle('Theme Lesson Test ' . uniqid());
 
         $course = new Course();
-        $course->setTitle('Guitare test');
+        $course->setTitle('Course Lesson Test ' . uniqid());
         $course->setPrice(50.0);
         $course->setTheme($theme);
 
         $lesson = new Lesson();
-        $lesson->setTitle('Les accords');
+        $lesson->setTitle($lessonTitle);
         $lesson->setPrice(26.0);
-        $lesson->setContent('Contenu de la leçon');
+        $lesson->setContent('Test lesson content');
         $lesson->setVideoUrl('https://youtube.com/test');
         $lesson->setCourse($course);
 
@@ -41,11 +44,13 @@ class LessonRepositoryTest extends KernelTestCase
         $this->em->persist($lesson);
         $this->em->flush();
 
-        $found = $this->em->getRepository(Lesson::class)
-            ->findOneBy(['title' => 'Les accords']);
+        $found = $this->em
+            ->getRepository(Lesson::class)
+            ->findOneBy(['title' => $lessonTitle]);
 
         $this->assertNotNull($found);
         $this->assertEquals(26.0, $found->getPrice());
+        $this->assertEquals('Test lesson content', $found->getContent());
 
         // Cleanup
         $this->em->remove($lesson);
@@ -57,8 +62,11 @@ class LessonRepositoryTest extends KernelTestCase
     // Tests that a non-existent lesson returns null
     public function testLessonNotFoundReturnsNull(): void
     {
-        $found = $this->em->getRepository(Lesson::class)
-            ->findOneBy(['title' => 'Leçon inexistante']);
+        $found = $this->em
+            ->getRepository(Lesson::class)
+            ->findOneBy([
+                'title' => 'Lesson That Does Not Exist ' . uniqid(),
+            ]);
 
         $this->assertNull($found);
     }

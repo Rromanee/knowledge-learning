@@ -150,11 +150,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/HomeController.php"><a href="files/src-controller-homecontroller.html"><abbr title="src/Controller/HomeController.php">HomeController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
-            <p class="phpdocumentor-summary">Displays the home page with all available themes.</p>
+            <p class="phpdocumentor-summary">Displays the home page with all available themes
+and allows users to search for courses.</p>
 
 
 
@@ -188,6 +189,7 @@
     <span>
                                 &nbsp;: <abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr>    </span>
 </dt>
+<dd>Displays the home page.</dd>
 
     </dl>
 
@@ -217,19 +219,23 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Controller/HomeController.php"><a href="files/src-controller-homecontroller.html"><abbr title="src/Controller/HomeController.php">HomeController.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Displays the home page.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">index</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-ThemeRepository.html"><abbr title="\App\Repository\ThemeRepository">ThemeRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$themeRepository</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr></span></code>
+                    <span class="phpdocumentor-signature__name">index</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-ThemeRepository.html"><abbr title="\App\Repository\ThemeRepository">ThemeRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$themeRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/App-Repository-CourseRepository.html"><abbr title="\App\Repository\CourseRepository">CourseRepository</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$courseRepository</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><abbr title="\Symfony\Component\HttpFoundation\Request">Request</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$request</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>When a search term is provided, matching courses are retrieved
+from the CourseRepository.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -237,7 +243,27 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Repository-ThemeRepository.html"><abbr title="\App\Repository\ThemeRepository">ThemeRepository</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Repository used to retrieve themes.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$courseRepository</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/App-Repository-CourseRepository.html"><abbr title="\App\Repository\CourseRepository">CourseRepository</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Repository used to search courses.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$request</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Symfony\Component\HttpFoundation\Request">Request</abbr></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>HTTP request containing the search term.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -265,6 +291,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><abbr title="\Symfony\Component\HttpFoundation\Response">Response</abbr></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The rendered home page.</p>
+</section>
+
             </section>
 
 </article>

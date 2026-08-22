@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes achats | Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Retrouvez vos formations achetées et suivez votre progression sur Knowledge Learning.
+{% endblock %}
+
+{% block body %}
+
+<div class="kl-container">
+
+    <h1 class="kl-title">
+        Mes achats
+    </h1>
+
+    <p class="text-center mb-4">
+        Retrouvez ici les formations que vous avez achetées.
+    </p>
+
+    {% if themes is not empty %}
+
+        {% for theme in themes %}
+
+            <section class="mb-5" aria-labelledby="theme-{{ theme.id }}">
+
+                <h2 id="theme-{{ theme.id }}" class="mb-4">
+                    {{ theme.title }}
+                </h2>
+
+                <div class="kl-grid">
+
+                    {% for progression in progressions %}
+
+                        {% if progression.course.theme.id == theme.id %}
+
+                            <a
+                                href="{{ path('app_purchases_course', {
+                                    id: progression.course.id
+                                }) }}"
+                                class="kl-card text-decoration-none"
+                            >
+
+                                <h3>
+                                    {{ progression.course.title }}
+                                </h3>
+
+                                <p class="mb-2">
+                                    <strong>Progression :</strong>
+                                    {{ progression.validatedLessons }}
+                                    /
+                                    {{ progression.totalLessons }}
+                                    leçons accessibles validées
+                                </p>
+
+                                <div
+                                    class="progress"
+                                    role="progressbar"
+                                    aria-label="Progression de {{ progression.course.title }}"
+                                    aria-valuenow="{{ progression.percentage }}"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                >
+                                    <div
+                                        class="progress-bar"
+                                        style="width: {{ progression.percentage }}%;"
+                                    >
+                                        {{ progression.percentage }} %
+                                    </div>
+                                </div>
+
+                            </a>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+            </section>
+
+        {% endfor %}
+
+    {% else %}
+
+        <p class="text-center">
+            Vous n'avez encore acheté aucune formation.
+        </p>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

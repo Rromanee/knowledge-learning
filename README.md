@@ -4,7 +4,7 @@ E-learning platform built with Symfony 8, allowing users to purchase and follow 
 
 ## 🚀 Live Demo
 
-[Railway](https://knowledge-learning-production.up.railway.app/)
+[]()
 
 **Test credentials:**
 - Admin: `admin@admin.com` / `admintest`
@@ -40,7 +40,7 @@ cp .env .env.local
 ```
 
 Edit `.env.local` :
-DATABASE_URL="postgresql://postgres:GklAQIycXWtqjyuPusJRuqPxtcOjRzQB@acela.proxy.rlwy.net:45515/railway?serverVersion=16"
+DATABASE_URL=
 STRIPE_SECRET_KEY=sk_test_your_key
 MAILER_DSN=smtp://127.0.0.1:1025
 APP_SECRET=your_secret

@@ -1,64 +1,98 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commandes{% endblock %}
+{% block title %}Gestion des commandes{% endblock %}
 
 {% block body %}
 
-<h1>Gestion des commandes</h1>
+<div class="kl-container">
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
+    <h1 class="kl-title">Gestion des commandes</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success auto-dismiss-alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Total</th>
+                    <th>Statut</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for order in orders %}
+
+                    <tr>
+
+                        <td>
+                            {{ order.id }}
+                        </td>
+
+                        <td>
+                            {{ order.user.email }}
+                        </td>
+
+                        <td>
+                            {{ order.total }} €
+                        </td>
+
+                        <td>
+                            {{ order.status }}
+                        </td>
+
+                        <td>
+                            {{ order.createdAt|date('d/m/Y H:i') }}
+                        </td>
+
+                        <td>
+                            <a
+                                href="{{ path('app_admin_order', {id: order.id}) }}"
+                                class="btn btn-primary btn-sm"
+                            >
+                                Voir
+                            </a>
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            Aucune commande trouvée.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
     </div>
-{% endfor %}
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Client</th>
-            <th>Total</th>
-            <th>Statut</th>
-            <th>Date</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+    <div class="text-center mt-4">
 
-    <tbody>
-        {% for order in orders %}
-            <tr>
-                <td>{{ order.id }}</td>
+        <a
+            href="{{ path('app_admin') }}"
+            class="btn btn-secondary"
+        >
+            ← Retour au backoffice
+        </a>
 
-                <td>
-                    {{ order.user.email }}
-                </td>
+    </div>
 
-                <td>
-                    {{ order.total }} €
-                </td>
-
-                <td>
-                    {{ order.status }}
-                </td>
-
-                <td>
-                    {{ order.createdAt|date('d/m/Y H:i') }}
-                </td>
-
-                <td>
-                    <a href="{{ path('app_admin_order', {id: order.id}) }}">
-                        Voir
-                    </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">
-                    Aucune commande trouvée.
-                </td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+</div>
 
 {% endblock %}

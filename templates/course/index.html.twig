@@ -1,42 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ course.title }}{% endblock %}
+{% block title %}{{ course.title }} - Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Découvrez le cours {{ course.title }} et ses leçons sur Knowledge Learning.
+{% endblock %}
 
 {% block body %}
 
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
-
-{% for message in app.flashes('warning') %}
-    <div class="alert alert-warning">
-        {{ message }}
-    </div>
-{% endfor %}
- 
 <div class="kl-container">
+
+    <nav aria-label="Fil d'Ariane" class="mb-3">
+
+        <a href="{{ path('app_home') }}">
+            Accueil
+        </a>
+
+        <span aria-hidden="true">
+            &gt;
+        </span>
+
+        <a href="{{ path('app_theme', {id: course.theme.id}) }}">
+            {{ course.theme.title }}
+        </a>
+
+        <span aria-hidden="true">
+            &gt;
+        </span>
+
+        <span aria-current="page">
+            {{ course.title }}
+        </span>
+
+    </nav>
+
     <h1 class="kl-title">{{ course.title }}</h1>
 
     <div class="kl-grid">
+
         {% for lesson in course.lessons %}
-            <a href="{{  path('app_lesson', {id: lesson.id}) }}" class="kl-card">
-                <h3>{{ lesson.title }}</h3>
-                    <p class="kl-price">{{ lesson.price }} €</p>
+
+            <a
+                href="{{ path('app_lesson', {id: lesson.id}) }}"
+                class="kl-card"
+            >
+
+                <h2>{{ lesson.title }}</h2>
+
+                <p class="kl-price">
+                    {{ lesson.price }} €
+                </p>
+
             </a>
 
-        {% if lesson.id in purchasedLessons %}
-            <span class="text-success">Achetée</span>
+            {% if coursePurchased or lesson.id in purchasedLessons %}
+
+                <span class="text-success">
+                    ✓ Accessible
+                </span>
+
+            {% else %}
+
+                <a href="{{ path('app_lesson_buy', {id: lesson.id}) }}">
+                    Acheter cette leçon
+                </a>
+
+            {% endif %}
+
         {% else %}
-            <a href="{{ path('app_lesson_buy', {id: lesson.id}) }}">
-                Acheter cette leçon
-             </a>
-        {% endif %}
-        
-        {% else %}
-            <p>Aucun cursus disponible.</p>
+
+            <p>Aucune leçon disponible.</p>
+
         {% endfor %}
+
     </div>
+
 </div>
+
 {% endblock %}

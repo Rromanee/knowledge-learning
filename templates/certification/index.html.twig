@@ -1,18 +1,87 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes certifications{% endblock %}
+{% block title %}Mes certifications | Knowledge Learning{% endblock %}
+
+{% block meta_description %}
+    Consultez vos certifications obtenues sur la plateforme Knowledge Learning.
+{% endblock %}
 
 {% block body %}
 
 <div class="kl-container">
-    <h1>Mes certifications</h1>
-    {% for certification in certifications %}
-        <div>
-            <h2>{{ certification.theme.title }}</h2>
-            <p>Obtenue le {{ certification.obtainedAt|date('d/m/Y') }}</p>
+
+    <h1 class="kl-title">
+        Mes certifications
+    </h1>
+
+    {% for message in app.flashes('success') %}
+
+        <div
+            class="alert alert-success auto-dismiss-alert"
+            role="status"
+        >
+            {{ message }}
         </div>
-    {% else %}
-        <p>Aucune certification obtenue.</p>
+
     {% endfor %}
+
+    {% if certifications|length > 0 %}
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-hover align-middle">
+
+                <caption class="visually-hidden">
+                    Liste de mes certifications obtenues
+                </caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Thème
+                        </th>
+
+                        <th scope="col">
+                            Date d'obtention
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for certification in certifications %}
+
+                        <tr>
+
+                            <td>
+                                {{ certification.theme.title }}
+                            </td>
+
+                            <td>
+                                {{ certification.obtainedAt|date('d/m/Y') }}
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    {% else %}
+
+        <div
+            class="alert alert-info"
+            role="status"
+        >
+            Aucune certification obtenue pour le moment.
+        </div>
+
+    {% endif %}
+
 </div>
+
 {% endblock %}

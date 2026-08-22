@@ -143,23 +143,28 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\HomeController",
             "name": "HomeController",
-            "summary": "Displays\u0020the\u0020home\u0020page\u0020with\u0020all\u0020available\u0020themes.",
+            "summary": "Displays\u0020the\u0020home\u0020page\u0020with\u0020all\u0020available\u0020themes\nand\u0020allows\u0020users\u0020to\u0020search\u0020for\u0020courses.",
             "url": "classes/App-Controller-HomeController.html"
         },                {
             "fqsen": "\\App\\Controller\\HomeController\u003A\u003Aindex\u0028\u0029",
             "name": "index",
-            "summary": "",
+            "summary": "Displays\u0020the\u0020home\u0020page.",
             "url": "classes/App-Controller-HomeController.html#method_index"
         },                {
             "fqsen": "\\App\\Controller\\LessonController",
             "name": "LessonController",
-            "summary": "Displays\u0020a\u0020lesson\u0020page,\u0020accessible\u0020only\u0020if\u0020purchased.",
+            "summary": "Displays\u0020lesson\u0020pages\u0020and\u0020purchased\u0020lessons.",
             "url": "classes/App-Controller-LessonController.html"
         },                {
             "fqsen": "\\App\\Controller\\LessonController\u003A\u003Ashow\u0028\u0029",
             "name": "show",
-            "summary": "",
+            "summary": "Displays\u0020a\u0020lesson\u0020page,\u0020accessible\u0020only\u0020if\u0020purchased.",
             "url": "classes/App-Controller-LessonController.html#method_show"
+        },                {
+            "fqsen": "\\App\\Controller\\LessonController\u003A\u003Apurchases\u0028\u0029",
+            "name": "purchases",
+            "summary": "Displays\u0020a\u0020purchased\u0020lesson\u0020from\u0020the\u0020\u0022Mes\u0020achats\u0022\u0020section.",
+            "url": "classes/App-Controller-LessonController.html#method_purchases"
         },                {
             "fqsen": "\\App\\Controller\\LessonValidationController",
             "name": "LessonValidationController",
@@ -173,18 +178,28 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Controller\\OrderController",
             "name": "OrderController",
-            "summary": "Handles\u0020purchase\u0020redirections\u0020to\u0020Stripe\u0020for\u0020courses\u0020and\u0020lessons.",
+            "summary": "Handles\u0020purchase\u0020redirections\u0020to\u0020Stripe\u0020and\u0020displays\u0020the\u0020purchase\u0020history.",
             "url": "classes/App-Controller-OrderController.html"
         },                {
             "fqsen": "\\App\\Controller\\OrderController\u003A\u003AbuyCourse\u0028\u0029",
             "name": "buyCourse",
-            "summary": "",
+            "summary": "Redirects\u0020the\u0020user\u0020to\u0020Stripe\u0020to\u0020purchase\u0020a\u0020course.",
             "url": "classes/App-Controller-OrderController.html#method_buyCourse"
         },                {
             "fqsen": "\\App\\Controller\\OrderController\u003A\u003AbuyLesson\u0028\u0029",
             "name": "buyLesson",
-            "summary": "",
+            "summary": "Redirects\u0020the\u0020user\u0020to\u0020Stripe\u0020to\u0020purchase\u0020a\u0020lesson.",
             "url": "classes/App-Controller-OrderController.html#method_buyLesson"
+        },                {
+            "fqsen": "\\App\\Controller\\OrderController\u003A\u003Apurchases\u0028\u0029",
+            "name": "purchases",
+            "summary": "Displays\u0020the\u0020purchase\u0020history\u0020of\u0020the\u0020currently\u0020logged\u002Din\u0020user.",
+            "url": "classes/App-Controller-OrderController.html#method_purchases"
+        },                {
+            "fqsen": "\\App\\Controller\\OrderController\u003A\u003ApurchasesCourse\u0028\u0029",
+            "name": "purchasesCourse",
+            "summary": "Displays\u0020the\u0020purchased\u0020content\u0020of\u0020a\u0020specific\u0020course.",
+            "url": "classes/App-Controller-OrderController.html#method_purchasesCourse"
         },                {
             "fqsen": "\\App\\Controller\\RegistrationController",
             "name": "RegistrationController",
@@ -211,6 +226,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-RegistrationController.html#property_emailVerifier"
         },                {
+            "fqsen": "\\App\\Controller\\SearchController",
+            "name": "SearchController",
+            "summary": "Handles\u0020the\u0020search\u0020functionality\u0020of\u0020the\u0020Knowledge\u0020Learning\u0020platform.",
+            "url": "classes/App-Controller-SearchController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\SearchController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "Searches\u0020for\u0020courses,\u0020themes\u0020and\u0020lessons\u0020matching\u0020the\u0020user\u0027s\u0020query.",
+            "url": "classes/App-Controller-SearchController.html#method_index"
+        },                {
             "fqsen": "\\App\\Controller\\SecurityController",
             "name": "SecurityController",
             "summary": "Handles\u0020login\u0020and\u0020logout.",
@@ -230,11 +255,6 @@ Search.appendIndex(
             "name": "StripeController",
             "summary": "Handles\u0020Stripe\u0020payment\u0020callbacks.",
             "url": "classes/App-Controller-StripeController.html"
-        },                {
-            "fqsen": "\\App\\Controller\\StripeController\u003A\u003Aindex\u0028\u0029",
-            "name": "index",
-            "summary": "",
-            "url": "classes/App-Controller-StripeController.html#method_index"
         },                {
             "fqsen": "\\App\\Controller\\StripeController\u003A\u003Asuccess\u0028\u0029",
             "name": "success",
@@ -1553,23 +1573,33 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\CourseRepository",
             "name": "CourseRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020managing\u0020Course\u0020entities.",
             "url": "classes/App-Repository-CourseRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\CourseRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Initializes\u0020the\u0020Course\u0020repository.",
             "url": "classes/App-Repository-CourseRepository.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Repository\\CourseRepository\u003A\u003Asearch\u0028\u0029",
+            "name": "search",
+            "summary": "Searches\u0020courses\u0020by\u0020their\u0020title.",
+            "url": "classes/App-Repository-CourseRepository.html#method_search"
         },                {
             "fqsen": "\\App\\Repository\\LessonRepository",
             "name": "LessonRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020managing\u0020Lesson\u0020entities.",
             "url": "classes/App-Repository-LessonRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\LessonRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Initializes\u0020the\u0020Lesson\u0020repository.",
             "url": "classes/App-Repository-LessonRepository.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Repository\\LessonRepository\u003A\u003Asearch\u0028\u0029",
+            "name": "search",
+            "summary": "Searches\u0020lessons\u0020by\u0020their\u0020title.",
+            "url": "classes/App-Repository-LessonRepository.html#method_search"
         },                {
             "fqsen": "\\App\\Repository\\LessonValidationRepository",
             "name": "LessonValidationRepository",
@@ -1583,8 +1613,13 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\LessonValidationRepository\u003A\u003AfindValidationByUserAndLesson\u0028\u0029",
             "name": "findValidationByUserAndLesson",
-            "summary": "Finds\u0020a\u0020validation\u0020record\u0020for\u0020a\u0020specific\u0020user\u0020and\u0020lesson\u0020combination.",
+            "summary": "Finds\u0020a\u0020validation\u0020record\u0020for\u0020a\u0020specific\u0020user\u0020and\u0020lesson.",
             "url": "classes/App-Repository-LessonValidationRepository.html#method_findValidationByUserAndLesson"
+        },                {
+            "fqsen": "\\App\\Repository\\LessonValidationRepository\u003A\u003AcountValidatedLessonsByUser\u0028\u0029",
+            "name": "countValidatedLessonsByUser",
+            "summary": "Returns\u0020the\u0020number\u0020of\u0020lessons\u0020validated\u0020by\u0020a\u0020user.",
+            "url": "classes/App-Repository-LessonValidationRepository.html#method_countValidatedLessonsByUser"
         },                {
             "fqsen": "\\App\\Repository\\OrderItemRepository",
             "name": "OrderItemRepository",
@@ -1593,7 +1628,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Repository\\OrderItemRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Initializes\u0020the\u0020OrderItem\u0020repository.",
             "url": "classes/App-Repository-OrderItemRepository.html#method___construct"
         },                {
             "fqsen": "\\App\\Repository\\OrderItemRepository\u003A\u003AfindPurchasedCourseByUser\u0028\u0029",
@@ -1606,25 +1641,40 @@ Search.appendIndex(
             "summary": "Returns\u0020order\u0020items\u0020where\u0020the\u0020given\u0020lesson\u0020was\u0020purchased\u0020by\u0020the\u0020given\u0020user.",
             "url": "classes/App-Repository-OrderItemRepository.html#method_findPurchasedLessonByUser"
         },                {
+            "fqsen": "\\App\\Repository\\OrderItemRepository\u003A\u003AfindPurchasedItemsByUserAndTheme\u0028\u0029",
+            "name": "findPurchasedItemsByUserAndTheme",
+            "summary": "Returns\u0020the\u0020items\u0020purchased\u0020by\u0020a\u0020user\u0020within\u0020a\u0020specific\u0020theme.",
+            "url": "classes/App-Repository-OrderItemRepository.html#method_findPurchasedItemsByUserAndTheme"
+        },                {
             "fqsen": "\\App\\Repository\\OrderRepository",
             "name": "OrderRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020managing\u0020Order\u0020entities.",
             "url": "classes/App-Repository-OrderRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\OrderRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Initializes\u0020the\u0020Order\u0020repository.",
             "url": "classes/App-Repository-OrderRepository.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Repository\\OrderRepository\u003A\u003AfindByUser\u0028\u0029",
+            "name": "findByUser",
+            "summary": "Returns\u0020all\u0020orders\u0020belonging\u0020to\u0020the\u0020given\u0020user.",
+            "url": "classes/App-Repository-OrderRepository.html#method_findByUser"
         },                {
             "fqsen": "\\App\\Repository\\ThemeRepository",
             "name": "ThemeRepository",
-            "summary": "",
+            "summary": "Repository\u0020for\u0020managing\u0020Theme\u0020entities.",
             "url": "classes/App-Repository-ThemeRepository.html"
         },                {
             "fqsen": "\\App\\Repository\\ThemeRepository\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
-            "summary": "",
+            "summary": "Initializes\u0020the\u0020Theme\u0020repository.",
             "url": "classes/App-Repository-ThemeRepository.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Repository\\ThemeRepository\u003A\u003Asearch\u0028\u0029",
+            "name": "search",
+            "summary": "Searches\u0020themes\u0020by\u0020their\u0020title.",
+            "url": "classes/App-Repository-ThemeRepository.html#method_search"
         },                {
             "fqsen": "\\App\\Repository\\UserRepository",
             "name": "UserRepository",

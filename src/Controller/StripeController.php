@@ -21,14 +21,6 @@ use Symfony\Component\Routing\Attribute\Route;
  */
 final class StripeController extends AbstractController
 {
-    #[Route('/stripe', name: 'app_stripe')]
-    public function index(): Response
-    {
-        return $this->render('stripe/index.html.twig', [
-            'controller_name' => 'StripeController',
-        ]);
-    }
-
     /**
      * Handles the Stripe success redirect after payment.
      * Retrieves session metadata to determine what was purchased.

@@ -148,11 +148,12 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/ThemeRepository.php"><a href="files/src-repository-themerepository.html"><abbr title="src/Repository/ThemeRepository.php">ThemeRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Repository for managing Theme entities.</p>
+
 
 
 
@@ -198,6 +199,14 @@
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+<dd>Initializes the Theme repository.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/App-Repository-ThemeRepository.html#method_search">search()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, <a href="classes/App-Entity-Theme.html"><abbr title="\App\Entity\Theme">Theme</abbr></a>&gt;    </span>
+</dt>
+<dd>Searches themes by their title.</dd>
 
     </dl>
 
@@ -227,11 +236,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/ThemeRepository.php"><a href="files/src-repository-themerepository.html"><abbr title="src/Repository/ThemeRepository.php">ThemeRepository.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Initializes the Theme repository.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><abbr title="\Doctrine\Persistence\ManagerRegistry">ManagerRegistry</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registry</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
@@ -247,7 +257,9 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><abbr title="\Doctrine\Persistence\ManagerRegistry">ManagerRegistry</abbr></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The Doctrine manager registry.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -256,6 +268,64 @@
         
     
     
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_search">
+        search()
+        <a href="classes/App-Repository-ThemeRepository.html#method_search" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Repository/ThemeRepository.php"><a href="files/src-repository-themerepository.html"><abbr title="src/Repository/ThemeRepository.php">ThemeRepository.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">36</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Searches themes by their title.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">search</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$search</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Entity-Theme.html"><abbr title="\App\Entity\Theme">Theme</abbr></a>&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>The search is case-insensitive and matches themes
+whose title contains the provided search term.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-argument-list__argument__name">$search</span>
+                : <span class="phpdocumentor-argument-list__argument__type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The search term entered by the user.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+        
+    
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, <a href="classes/App-Entity-Theme.html"><abbr title="\App\Entity\Theme">Theme</abbr></a>&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The themes matching the search criteria.</p>
+</section>
+
+            </section>
+
 </article>
             </section>
 
@@ -280,6 +350,7 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/App-Repository-ThemeRepository.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/App-Repository-ThemeRepository.html#method_search">search()</a></li>
                                     </ul>
             </li>
                     </ul>

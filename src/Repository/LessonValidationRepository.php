@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Lesson;
-use App\Entity\User;
 use App\Entity\LessonValidation;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,46 +21,28 @@ class LessonValidationRepository extends ServiceEntityRepository
     }
 
     /**
-     * Finds a validation record for a specific user and lesson combination.
-     *
-     * @param Lesson    $lesson The lesson to check
-     * @param User|null $user   The user to check
-     * @return LessonValidation|null Returns null if not yet validated
+     * Finds a validation record for a specific user and lesson.
      */
-
     public function findValidationByUserAndLesson(
         Lesson $lesson,
         User $user
-    ): ?LessonValidation
-    {
+    ): ?LessonValidation {
         return $this->findOneBy([
             'lesson' => $lesson,
             'user' => $user,
         ]);
     }
 
-    //    /**
-    //     * @return LessonValidation[] Returns an array of LessonValidation objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('l')
-    //            ->andWhere('l.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('l.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?LessonValidation
-    //    {
-    //        return $this->createQueryBuilder('l')
-    //            ->andWhere('l.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * Returns the number of lessons validated by a user.
+     */
+    public function countValidatedLessonsByUser(User $user): int
+    {
+        return (int) $this->createQueryBuilder('lv')
+            ->select('COUNT(lv.id)')
+            ->andWhere('lv.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

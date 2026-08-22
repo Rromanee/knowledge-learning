@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-/** Manages lesson CRUD operations in the backoffice. */
+/**
+ * Manages lesson CRUD operations in the backoffice.
+ */
 final class AdminLessonController extends AbstractController
 {
     #[Route('/admin/lessons', name: 'app_admin_lessons')]
@@ -41,6 +43,12 @@ final class AdminLessonController extends AbstractController
             $form->isSubmitted()
             && $form->isValid()
         ) {
+            $user = $this->getUser();
+
+            if ($user) {
+                $lesson->setCreatedBy($user->getUserIdentifier());
+            }
+
             $entityManager->persist($lesson);
             $entityManager->flush();
 
@@ -77,6 +85,14 @@ final class AdminLessonController extends AbstractController
             $form->isSubmitted()
             && $form->isValid()
         ) {
+            $user = $this->getUser();
+
+            $lesson->setUpdatedAt(new \DateTimeImmutable());
+
+            if ($user) {
+                $lesson->setUpdatedBy($user->getUserIdentifier());
+            }
+
             $entityManager->flush();
 
             $this->addFlash(
@@ -101,10 +117,17 @@ final class AdminLessonController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request
     ): Response {
-
-        if (!$this->isCsrfTokenValid('delete_lesson_' . $lesson->getId(), $request->request->get('_token'))) {
-            throw $this->createAccessDeniedException('Invalid CSRF token.');
+        if (
+            !$this->isCsrfTokenValid(
+                'delete_lesson_' . $lesson->getId(),
+                $request->request->get('_token')
+            )
+        ) {
+            throw $this->createAccessDeniedException(
+                'Invalid CSRF token.'
+            );
         }
+
         $entityManager->remove($lesson);
         $entityManager->flush();
 
