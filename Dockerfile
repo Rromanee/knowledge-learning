@@ -19,6 +19,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 ENV APP_ENV=prod
 ENV SERVER_NAME=:8080
 
+RUN php bin/console importmap:install
 RUN php bin/console cache:clear
 
 CMD ["frankenphp", "run", "--config", "/etc/frankenphp/Caddyfile"]
