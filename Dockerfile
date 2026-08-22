@@ -3,13 +3,16 @@ FROM dunglas/frankenphp:php8.4
 RUN install-php-extensions \
     pdo_mysql \
     intl \
-    opcache
+    opcache \
+    zip
 
 WORKDIR /app
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 COPY . .
+
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
