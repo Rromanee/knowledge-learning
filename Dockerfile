@@ -15,14 +15,13 @@ COPY . .
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV APP_ENV=prod
 ENV APP_SECRET=placeholder
-ENV DATABASE_URL=mysql://placeholder
+ENV DATABASE_URL=mysql://user:pass@localhost:3306/db?serverVersion=8.0
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
-# Build assets - v2
 RUN php bin/console importmap:install
 RUN php bin/console asset-map:compile
-RUN php bin/console cache:clear
+RUN php bin/console cache:clear --no-warmup
 
 ENV SERVER_NAME=:8080
 
