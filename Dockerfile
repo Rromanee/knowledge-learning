@@ -19,6 +19,7 @@ ENV DATABASE_URL=mysql://placeholder
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
+# Build assets - v2
 RUN php bin/console importmap:install
 RUN php bin/console asset-map:compile
 RUN php bin/console cache:clear
