@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Theme;
 use App\Entity\Course;
 use App\Entity\Lesson;
-use App\Entity\Theme;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -22,62 +22,53 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        /*
-         * ============================================================
-         * USERS
-         * ============================================================
-         */
+        // ============================================================
+        // USERS
+        // ============================================================
 
         // Admin
         $admin = new User();
         $admin->setEmail('admin@admin.com');
         $admin->setRoles(['ROLE_ADMIN', 'ROLE_CLIENT']);
-        $admin->setIsVerified(true);
         $admin->setPassword(
             $this->passwordHasher->hashPassword($admin, 'admintest')
         );
-
+        $admin->setIsVerified(true);
         $manager->persist($admin);
 
         // Client 1
         $user = new User();
         $user->setEmail('user@user.com');
         $user->setRoles(['ROLE_CLIENT']);
-        $user->setIsVerified(true);
         $user->setPassword(
             $this->passwordHasher->hashPassword($user, 'useruser')
         );
-
+        $user->setIsVerified(true);
         $manager->persist($user);
 
         // Client 2
         $user2 = new User();
         $user2->setEmail('useruser@user.com');
         $user2->setRoles(['ROLE_CLIENT']);
-        $user2->setIsVerified(true);
         $user2->setPassword(
             $this->passwordHasher->hashPassword($user2, 'User-2l')
         );
-
+        $user2->setIsVerified(true);
         $manager->persist($user2);
 
-        /*
-         * ============================================================
-         * MUSIQUE
-         * ============================================================
-         */
+        // ============================================================
+        // MUSIC THEME
+        // ============================================================
 
         $music = new Theme();
         $music->setTitle('Musique');
-
         $manager->persist($music);
 
-        // Guitare
+        // Guitar course
         $guitar = new Course();
         $guitar->setTitle("Cursus d'initiation à la guitare");
         $guitar->setPrice(50);
         $guitar->setTheme($music);
-
         $manager->persist($guitar);
 
         $lesson = new Lesson();
@@ -85,8 +76,9 @@ class AppFixtures extends Fixture
         $lesson->setPrice(26);
         $lesson->setCourse($guitar);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
         $lesson = new Lesson();
@@ -94,16 +86,16 @@ class AppFixtures extends Fixture
         $lesson->setPrice(26);
         $lesson->setCourse($guitar);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
-        // Piano
+        // Piano course
         $piano = new Course();
         $piano->setTitle("Cursus d'initiation au piano");
         $piano->setPrice(50);
         $piano->setTheme($music);
-
         $manager->persist($piano);
 
         $lesson = new Lesson();
@@ -111,8 +103,9 @@ class AppFixtures extends Fixture
         $lesson->setPrice(26);
         $lesson->setCourse($piano);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
         $lesson = new Lesson();
@@ -120,27 +113,24 @@ class AppFixtures extends Fixture
         $lesson->setPrice(26);
         $lesson->setCourse($piano);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
-        /*
-         * ============================================================
-         * INFORMATIQUE
-         * ============================================================
-         */
+        // ============================================================
+        // INFORMATIQUE THEME
+        // ============================================================
 
         $it = new Theme();
         $it->setTitle('Informatique');
-
         $manager->persist($it);
 
-        // Développement web
+        // Web course
         $web = new Course();
         $web->setTitle("Cursus d’initiation au développement web");
         $web->setPrice(60);
         $web->setTheme($it);
-
         $manager->persist($web);
 
         $lesson = new Lesson();
@@ -148,8 +138,9 @@ class AppFixtures extends Fixture
         $lesson->setPrice(32);
         $lesson->setCourse($web);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
         $lesson = new Lesson();
@@ -157,26 +148,24 @@ class AppFixtures extends Fixture
         $lesson->setPrice(32);
         $lesson->setCourse($web);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
-        /*
-         * ============================================================
-         * JARDINAGE
-         * ============================================================
-         */
+        // ============================================================
+        // JARDINAGE THEME
+        // ============================================================
 
         $gardening = new Theme();
         $gardening->setTitle('Jardinage');
-
         $manager->persist($gardening);
 
+        // Gardening course
         $garden = new Course();
         $garden->setTitle("Cursus d’initiation au jardinage");
         $garden->setPrice(30);
         $garden->setTheme($gardening);
-
         $manager->persist($garden);
 
         $lesson = new Lesson();
@@ -184,8 +173,9 @@ class AppFixtures extends Fixture
         $lesson->setPrice(16);
         $lesson->setCourse($garden);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
         $lesson = new Lesson();
@@ -193,27 +183,24 @@ class AppFixtures extends Fixture
         $lesson->setPrice(16);
         $lesson->setCourse($garden);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
-        /*
-         * ============================================================
-         * CUISINE
-         * ============================================================
-         */
+        // ============================================================
+        // CUISINE THEME
+        // ============================================================
 
         $cooking = new Theme();
         $cooking->setTitle('Cuisine');
-
         $manager->persist($cooking);
 
-        // Cuisine
+        // Cooking course
         $cook = new Course();
         $cook->setTitle("Cursus d’initiation à la cuisine");
         $cook->setPrice(44);
         $cook->setTheme($cooking);
-
         $manager->persist($cook);
 
         $lesson = new Lesson();
@@ -221,8 +208,9 @@ class AppFixtures extends Fixture
         $lesson->setPrice(23);
         $lesson->setCourse($cook);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
         $lesson = new Lesson();
@@ -230,18 +218,18 @@ class AppFixtures extends Fixture
         $lesson->setPrice(23);
         $lesson->setCourse($cook);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
-        // Art du dressage culinaire
+        // Culinary presentation course
         $presentation = new Course();
         $presentation->setTitle(
             "Cursus d’initiation à l’art du dressage culinaire"
         );
         $presentation->setPrice(48);
         $presentation->setTheme($cooking);
-
         $manager->persist($presentation);
 
         $lesson = new Lesson();
@@ -249,8 +237,9 @@ class AppFixtures extends Fixture
         $lesson->setPrice(26);
         $lesson->setCourse($presentation);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
         $lesson = new Lesson();
@@ -258,15 +247,14 @@ class AppFixtures extends Fixture
         $lesson->setPrice(26);
         $lesson->setCourse($presentation);
         $lesson->setContent('Lorem ipsum...');
-        $lesson->setVideoUrl('https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0');
-
+        $lesson->setVideoUrl(
+            'https://youtu.be/BFzeAGvLvBw?si=_biqXykVZ4M-Cix0'
+        );
         $manager->persist($lesson);
 
-        /*
-         * ============================================================
-         * SAVE
-         * ============================================================
-         */
+        // ============================================================
+        // SAVE EVERYTHING
+        // ============================================================
 
         $manager->flush();
     }
